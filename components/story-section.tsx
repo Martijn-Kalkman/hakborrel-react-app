@@ -3,9 +3,6 @@ import { Heart, Users, Music, Zap } from "lucide-react"
 export function StorySection() {
   return (
     <section className="relative py-24 px-6 overflow-hidden">
-      {/* Clean, simple background */}
-      <div className="absolute inset-0 bg-black" />
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5" />
 
       <div className="container mx-auto relative z-10 max-w-4xl">
         <div className="text-center mb-16">

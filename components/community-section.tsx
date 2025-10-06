@@ -21,11 +21,8 @@ export function CommunitySection() {
 
   return (
     <section className="relative py-24 px-6 overflow-hidden">
-      {/* Animated split community background */}
-      <div className="absolute inset-0 bg-black" />
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/12 via-transparent to-secondary/12 animate-pulse" />
       
-      {/* Moving hexagonal pattern */}
+      {/* Community-specific hexagonal pattern */}
       <div 
         className="absolute inset-0 opacity-20"
         style={{

@@ -44,23 +44,20 @@ export function VideoSection() {
   }
 
   return (
-    <section className="relative py-24 px-6 overflow-hidden">
-      {/* Clean, simple background */}
-      <div className="absolute inset-0 bg-black" />
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5" />
+    <section className="relative section-padding overflow-hidden">
 
-      <div className="container mx-auto relative z-10 max-w-5xl">
+      <div className="container-professional relative z-10 max-w-5xl">
         {/* Professional header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-3 mb-6">
-            <div className="w-1 h-8 bg-primary"></div>
-            <h2 className="text-4xl md:text-6xl font-bold">
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center gap-4 mb-8">
+            <div className="w-1 h-12 bg-gradient-to-b from-primary to-primary/50"></div>
+            <h2 className="text-5xl md:text-7xl font-display">
               <span className="text-white">FEATURED</span>{" "}
-              <span className="text-primary">VIDEO</span>
+              <span className="text-gradient-primary">VIDEO</span>
             </h2>
-            <div className="w-1 h-8 bg-primary"></div>
+            <div className="w-1 h-12 bg-gradient-to-b from-primary to-primary/50"></div>
           </div>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-gray-300 text-xl max-w-3xl mx-auto leading-relaxed font-body">
             Watch our latest aftermovie and experience the underground hardcore movement.
           </p>
         </div>
@@ -68,7 +65,7 @@ export function VideoSection() {
         {/* Professional video player */}
         <div className="max-w-4xl mx-auto">
           <div
-            className="group relative aspect-video overflow-hidden rounded-xl border border-gray-700/50 hover:border-primary/50 transition-all duration-500 cursor-pointer bg-gray-900/50 backdrop-blur-sm"
+            className="group relative aspect-video overflow-hidden rounded-xl border border-gray-700/50 hover:border-primary/50 transition-all duration-500 cursor-pointer bg-gray-900/50 backdrop-blur-smooth hover-lift"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onClick={handleVideoClick}
@@ -146,17 +143,17 @@ export function VideoSection() {
           </div>
 
           {/* Professional action section */}
-          <div className="mt-8 text-center">
-            <p className="text-gray-400 text-sm mb-6">
+          <div className="mt-12 text-center">
+            <p className="text-gray-400 text-base mb-8 font-body">
               More videos coming soon. Subscribe to our channel for the latest content.
             </p>
-            <div className="flex justify-center gap-4">
+            <div className="flex justify-center gap-6">
               <Link href="/tickets">
-                <button className="bg-primary hover:bg-primary/90 text-black font-semibold px-6 py-3 rounded-lg cursor-pointer shadow-lg hover:shadow-xl">
+                <button className="btn-professional px-8 py-3 cursor-pointer">
                   GET TICKETS
                 </button>
               </Link>
-              <button className="border border-primary/50 hover:border-primary text-primary hover:text-white hover:bg-primary font-semibold px-6 py-3 rounded-lg cursor-pointer">
+              <button className="btn-professional btn-secondary px-8 py-3 cursor-pointer">
                 SUBSCRIBE
               </button>
             </div>

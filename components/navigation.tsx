@@ -63,6 +63,9 @@ export function Navigation() {
             <button onClick={() => scrollToSection('events')} className="text-white hover:text-primary transition-colors font-medium text-sm tracking-wide hover:scale-105 cursor-pointer">
               EVENTS
             </button>
+            <button onClick={() => scrollToSection('agenda')} className="text-white hover:text-primary transition-colors font-medium text-sm tracking-wide hover:scale-105 cursor-pointer">
+              AGENDA
+            </button>
             <button onClick={() => scrollToSection('videos')} className="text-white hover:text-primary transition-colors font-medium text-sm tracking-wide hover:scale-105 cursor-pointer">
               VIDEO&apos;S
             </button>
@@ -120,6 +123,9 @@ export function Navigation() {
               </button>
               <button onClick={() => scrollToSection('events')} className="block w-full text-left text-white hover:text-primary transition-colors font-medium py-2 cursor-pointer">
                 EVENTS
+              </button>
+              <button onClick={() => scrollToSection('agenda')} className="block w-full text-left text-white hover:text-primary transition-colors font-medium py-2 cursor-pointer">
+                AGENDA
               </button>
               <button onClick={() => scrollToSection('videos')} className="block w-full text-left text-white hover:text-primary transition-colors font-medium py-2 cursor-pointer">
                 VIDEO&apos;S
