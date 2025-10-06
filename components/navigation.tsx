@@ -19,7 +19,14 @@ export function Navigation() {
     } else {
       const element = document.getElementById(sectionId)
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' })
+        // Smooth scroll with offset for better positioning
+        const offset = 80 // Account for fixed navigation height
+        const elementPosition = element.offsetTop - offset
+        
+        window.scrollTo({
+          top: elementPosition,
+          behavior: 'smooth'
+        })
       }
     }
     setIsMenuOpen(false)
