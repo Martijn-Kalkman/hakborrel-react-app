@@ -3,9 +3,8 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
-import { Calendar, MapPin, Clock, Ticket, Users, Zap, Music, Shield, Star, ArrowRight, CheckCircle } from "lucide-react"
+import { Calendar, MapPin, Ticket, Users, Zap, Music, Shield, Star, ArrowRight, CheckCircle } from "lucide-react"
 import Image from "next/image"
-import { useState } from "react"
 
 const ticketEvents = [
   {
@@ -84,8 +83,6 @@ const features = [
 ]
 
 export default function TicketsPage() {
-  const [selectedEvent, setSelectedEvent] = useState<string | null>(null)
-
   return (
     <main className="min-h-screen bg-black">
       <Navigation />
@@ -114,13 +111,13 @@ export default function TicketsPage() {
               <div className="w-1 h-8 bg-primary"></div>
             </div>
             <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-12 leading-relaxed">
-              Secure your spot at the underground's most exclusive events. Limited capacity, maximum energy.
+              Secure your spot at the underground&apos;s most exclusive events. Limited capacity, maximum energy.
             </p>
             
             {/* Features Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              {features.map((feature, index) => (
-                <div key={index} className="text-center group">
+              {features.map((feature) => (
+                <div key={feature.title} className="text-center group">
                   <div className="bg-black/40 border border-primary/20 rounded-xl p-4 mb-3 group-hover:border-primary/40 transition-all duration-300">
                     <feature.icon className="h-8 w-8 text-primary mx-auto mb-2" />
                     <div className="text-white text-sm font-semibold">{feature.title}</div>
@@ -133,7 +130,7 @@ export default function TicketsPage() {
 
           {/* Events List */}
           <div className="space-y-8">
-            {ticketEvents.map((event, index) => (
+            {ticketEvents.map((event) => (
               <div
                 key={event.id}
                 className={`group relative bg-black/40 backdrop-blur-sm border rounded-2xl overflow-hidden transition-all duration-500 hover:scale-[1.01] ${
@@ -178,7 +175,7 @@ export default function TicketsPage() {
                         <div className="w-full bg-gray-700 rounded-full h-2">
                           <div 
                             className="bg-primary h-2 rounded-full transition-all duration-500"
-                            style={{ width: `${(event.sold / event.capacity) * 100}%` }}
+                            style={{ width: `${(parseInt(event.sold) / parseInt(event.capacity)) * 100}%` }}
                           />
                         </div>
                       </div>
@@ -213,7 +210,7 @@ export default function TicketsPage() {
                           <Users className="h-5 w-5 text-primary" />
                           <div>
                             <div className="text-sm font-medium">Attendees</div>
-                            <div className="text-xs text-gray-400">{event.capacity - event.sold} spots left</div>
+                             <div className="text-xs text-gray-400">{parseInt(event.capacity) - parseInt(event.sold)} spots left</div>
                           </div>
                         </div>
                       </div>
@@ -253,7 +250,7 @@ export default function TicketsPage() {
           {/* Bottom Info Section */}
           <div className="mt-20 bg-black/40 backdrop-blur-sm border border-primary/20 rounded-2xl p-8">
             <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold text-white mb-4">What's Included</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">What&apos;s Included</h3>
               <p className="text-gray-300">Every ticket includes access to the full event experience</p>
             </div>
             

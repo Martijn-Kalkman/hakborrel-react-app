@@ -3,6 +3,7 @@
 import { Play, ExternalLink, Calendar, Eye } from "lucide-react"
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import Image from "next/image"
 
 // Single featured video - ready for YouTube API integration
 const featuredVideo = {
@@ -75,10 +76,11 @@ export function VideoSection() {
             {!isVideoLoaded ? (
               <>
                 {/* YouTube thumbnail */}
-                <img
+                <Image
                   src={featuredVideo.thumbnail}
                   alt={featuredVideo.title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
 
                 {/* Professional overlay */}

@@ -18,7 +18,7 @@ export function StorySection() {
             <div className="w-1 h-8 bg-primary"></div>
           </div>
           <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
-            Not just a party. It's a movement.
+            Not just a party. It&apos;s a movement.
           </p>
         </div>
 
@@ -37,7 +37,7 @@ export function StorySection() {
               </p>
               <p>
                 What began as small gatherings in underground locations has grown into a movement that spans cities,
-                bringing together people who understand that hardcore isn't just music—it's a way of life.
+                bringing together people who understand that hardcore isn&apos;t just music—it&apos;s a way of life.
               </p>
             </div>
           </div>
