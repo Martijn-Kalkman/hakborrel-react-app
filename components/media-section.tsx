@@ -1,54 +1,31 @@
 import Image from "next/image"
 import Link from "next/link"
+import { Youtube, Music, Instagram } from "lucide-react"
 
 const mediaItems = [
   {
     id: 1,
     type: "image",
-    src: "/placeholder-media.svg",
+    src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop&crop=center",
     title: "Underground Rave #22",
   },
   {
     id: 2,
     type: "image",
-    src: "/placeholder-media.svg",
+    src: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&h=400&fit=crop&crop=center",
     title: "Festival 2023",
   },
   {
     id: 3,
     type: "image",
-    src: "/placeholder-media.svg",
+    src: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=400&fit=crop&crop=center",
     title: "Bunker Sessions",
   },
   {
     id: 4,
     type: "image",
-    src: "/placeholder-media.svg",
+    src: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&h=400&fit=crop&crop=center",
     title: "Midnight Madness",
-  },
-  {
-    id: 5,
-    type: "image",
-    src: "/placeholder-media.svg",
-    title: "Community Gathering",
-  },
-  {
-    id: 6,
-    type: "image",
-    src: "/placeholder-media.svg",
-    title: "Industrial Warehouse",
-  },
-  {
-    id: 7,
-    type: "image",
-    src: "/placeholder-media.svg",
-    title: "Secret Sessions",
-  },
-  {
-    id: 8,
-    type: "image",
-    src: "/placeholder-media.svg",
-    title: "Hardcore Movement",
   },
 ]
 
@@ -110,7 +87,7 @@ export function MediaSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {mediaItems.map((item) => (
             <div key={item.id} className="group relative overflow-hidden rounded-lg bg-black/60 backdrop-blur-sm border border-gray-700/50 hover:border-secondary/50 transition-all duration-300">
               <div className="aspect-[4/3] relative">
@@ -127,6 +104,45 @@ export function MediaSection() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Social Media Icons */}
+        <div className="flex justify-center items-center gap-8 mb-8">
+          <a 
+            href="https://youtube.com/@hakborrel" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="group flex flex-col items-center gap-3 hover:scale-110 transition-transform duration-300"
+          >
+            <div className="w-16 h-16 bg-red-600/20 rounded-full flex items-center justify-center border border-red-600/30 group-hover:bg-red-600/30 group-hover:border-red-600/50 transition-all duration-300">
+              <Youtube className="h-8 w-8 text-red-500 group-hover:text-red-400" />
+            </div>
+            <span className="text-gray-400 text-sm font-body group-hover:text-white transition-colors">YouTube</span>
+          </a>
+
+          <a 
+            href="https://tiktok.com/@hakborrel" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="group flex flex-col items-center gap-3 hover:scale-110 transition-transform duration-300"
+          >
+            <div className="w-16 h-16 bg-black/20 rounded-full flex items-center justify-center border border-gray-600/30 group-hover:bg-black/30 group-hover:border-gray-500/50 transition-all duration-300">
+              <Music className="h-8 w-8 text-white group-hover:text-gray-300" />
+            </div>
+            <span className="text-gray-400 text-sm font-body group-hover:text-white transition-colors">TikTok</span>
+          </a>
+
+          <a 
+            href="https://instagram.com/hakborrel" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="group flex flex-col items-center gap-3 hover:scale-110 transition-transform duration-300"
+          >
+            <div className="w-16 h-16 bg-gradient-to-br from-purple-600/20 to-pink-600/20 rounded-full flex items-center justify-center border border-purple-600/30 group-hover:from-purple-600/30 group-hover:to-pink-600/30 group-hover:border-purple-500/50 transition-all duration-300">
+              <Instagram className="h-8 w-8 text-purple-400 group-hover:text-purple-300" />
+            </div>
+            <span className="text-gray-400 text-sm font-body group-hover:text-white transition-colors">Instagram</span>
+          </a>
         </div>
 
         <div className="text-center mt-12">

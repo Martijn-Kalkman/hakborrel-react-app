@@ -2,6 +2,7 @@
 
 import { Clock, MapPin, Music, Calendar, Heart, Info } from "lucide-react"
 import { useState } from "react"
+import { EventCalendar } from "@/components/event-calendar"
 
 // Sample lineup data - replace with real data
 const lineupData = [
@@ -230,7 +231,7 @@ export function AgendaSection() {
         </div>
 
         {/* Lineup display */}
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto mb-16">
           {lineupData.map((stage) => (
             <div
               key={stage.id}
@@ -301,6 +302,11 @@ export function AgendaSection() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Event Calendar */}
+        <div className="mb-16">
+          <EventCalendar />
         </div>
 
         {/* Professional action button */}

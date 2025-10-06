@@ -48,9 +48,9 @@ export function Navigation() {
           <button onClick={navigateToHome} className="flex items-center hover:scale-105 transition-transform">
             <div 
               className="w-10 h-10 bg-contain bg-no-repeat bg-center"
-              style={{
-                backgroundImage: "url('/logo/HakBorrel-LOGOS_white 1.png')"
-              }}
+            style={{
+              backgroundImage: "url('/logo/HakBorrel-LOGOS_white 1.png')"
+            }}
             />
             <span className="text-white font-bold text-lg ml-3">HAKBORREL</span>
           </button>

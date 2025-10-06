@@ -43,7 +43,7 @@ export function EventCard({ event }: EventCardProps) {
         {/* Image */}
         <div className="relative h-48 overflow-hidden">
           <Image
-            src={event.image || "/placeholder.svg"}
+            src={event.image || "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop&crop=center"}
             alt={event.title}
             fill
             className="object-cover group-hover:scale-110 transition-transform duration-500"

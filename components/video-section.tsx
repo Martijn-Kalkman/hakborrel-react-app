@@ -74,7 +74,7 @@ export function VideoSection() {
               <>
                 {/* YouTube thumbnail */}
                 <Image
-                  src={featuredVideo.thumbnail}
+                  src="https://img.youtube.com/vi/SOH49z-S0G0/hqdefault.jpg"
                   alt={featuredVideo.title}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
