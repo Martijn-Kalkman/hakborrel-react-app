@@ -2,7 +2,6 @@
 
 import { Clock, MapPin, Music, Calendar, Heart, Info } from "lucide-react"
 import { useState } from "react"
-import { EventCalendar } from "@/components/event-calendar"
 
 // Sample lineup data - replace with real data
 const lineupData = [
@@ -304,10 +303,6 @@ export function AgendaSection() {
           ))}
         </div>
 
-        {/* Event Calendar */}
-        <div className="mb-16">
-          <EventCalendar />
-        </div>
 
         {/* Professional action button */}
         <div className="text-center mt-20">
