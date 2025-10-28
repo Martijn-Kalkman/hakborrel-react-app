@@ -39,7 +39,7 @@
               loading="lazy"
               format="webp"
               quality="100"
-              sizes="40px"
+              sizes="8px"
             />
             <h3 class="text-white text-xl font-bold">HAKBORREL</h3>
           </div>

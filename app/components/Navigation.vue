@@ -10,7 +10,7 @@
             loading="eager"
             format="webp"
             quality="100"
-            sizes="40px"
+            sizes="8px"
           />
           
           <span class="text-white font-display text-xl">HAKBORREL</span>
