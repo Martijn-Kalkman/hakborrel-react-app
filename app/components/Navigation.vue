@@ -7,6 +7,7 @@
           <NuxtImg 
             src="/logo/HakBorrel-LOGOS_white 1.png"
             alt="HakBorrel Logo"
+            class="w-12 h-12"
             loading="eager"
             format="webp"
             quality="100"

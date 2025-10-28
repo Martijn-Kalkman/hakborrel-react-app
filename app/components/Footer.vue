@@ -37,6 +37,7 @@
               src="/logo/HakBorrel-LOGOS_white 1.png"
               alt="HakBorrel Logo"
               loading="lazy"
+              class="w-12 h-12"
               format="webp"
               quality="100"
               sizes="8px"
