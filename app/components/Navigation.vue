@@ -5,14 +5,15 @@
         <!-- Logo -->
         <NuxtLink to="/" class="flex items-center space-x-4 hover:opacity-80 transition-opacity">
           <NuxtImg 
-            src="/logo/HakBorrel-LOGOS_white 1.png"
-            alt="HakBorrel Logo"
-            class="w-12 h-12"
-            loading="eager"
-            format="webp"
-            quality="100"
-            sizes="8px"
-          />
+          src="/logo/HakBorrel-LOGOS_white 1.png"
+          alt="HakBorrel Logo"
+          class="object-contain flex-shrink-0"
+          style="width: 52px; height: 52px;"
+          loading="eager"
+          format="webp"
+          quality="100"
+          sizes="52px"
+        />
           
           <span class="text-white font-display text-xl">HAKBORREL</span>
         </NuxtLink>

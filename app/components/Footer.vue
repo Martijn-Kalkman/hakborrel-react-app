@@ -34,14 +34,15 @@
         <div class="lg:col-span-1">
           <div class="flex items-center gap-3 mb-6">
             <NuxtImg 
-              src="/logo/HakBorrel-LOGOS_white 1.png"
-              alt="HakBorrel Logo"
-              loading="lazy"
-              class="w-12 h-12"
-              format="webp"
-              quality="100"
-              sizes="8px"
-            />
+          src="/logo/HakBorrel-LOGOS_white 1.png"
+          alt="HakBorrel Logo"
+          class="object-contain flex-shrink-0"
+          style="width: 52px; height: 52px;"
+          loading="eager"
+          format="webp"
+          quality="100"
+          sizes="52px"
+        />
             <h3 class="text-white text-xl font-bold">HAKBORREL</h3>
           </div>
           <p class="text-gray-400 text-sm leading-relaxed mb-6">
