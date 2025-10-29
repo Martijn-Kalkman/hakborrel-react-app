@@ -5,7 +5,7 @@
         <!-- Logo -->
         <NuxtLink to="/" class="flex items-center space-x-4 hover:opacity-80 transition-opacity">
           <NuxtImg 
-            src="/logo/HakBorrel-LOGOS_white 1.png"
+            src="/logo/HakBorrel-LOGOS_white.png"
             alt="HakBorrel Logo"
             loading="eager"
             format="webp"

@@ -26,7 +26,7 @@
         <div class="lg:col-span-1">
           <div class="flex items-center gap-3 mb-6">
             <NuxtImg 
-              src="/logo/HakBorrel-LOGOS_white 1.png"
+              src="/logo/HakBorrel-LOGOS_white.png"
               alt="HakBorrel Logo"
               loading="lazy"
               format="webp"

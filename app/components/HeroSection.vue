@@ -20,7 +20,7 @@
       <!-- Logo and Title -->
       <div class="mb-6 md:mb-8 flex items-center justify-center gap-2 md:gap-4 px-3 md:px-6 flex-shrink-0">
         <NuxtImg 
-          src="/logo/HakBorrel-LOGOS_white 1.png"
+          src="/logo/HakBorrel-LOGOS_white.png"
           alt="HakBorrel Logo"
           class="object-contain flex-shrink-0"
           loading="eager"
