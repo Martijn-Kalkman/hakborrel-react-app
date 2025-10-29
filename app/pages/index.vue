@@ -2,11 +2,11 @@
   <div class="relative bg-black overflow-x-hidden">
     <!-- Optimized Background Effects - Reduced complexity -->
     <div class="fixed inset-0 bg-black" />
-    <div class="fixed inset-0 bg-gradient-to-br from-green-500/6 via-transparent to-purple-500/8" />
+    <div class="fixed inset-0 bg-gradient-to-br from-green-500/10 via-transparent to-purple-500/12" />
     
     <!-- Reduced Atmospheric Glows - Only 2 instead of 3 -->
-    <div class="fixed top-1/4 left-1/4 w-64 h-64 bg-green-500/6 rounded-full blur-[150px] animate-smooth-flow" style="animation-duration: 20s;" />
-    <div class="fixed top-3/4 right-1/4 w-64 h-64 bg-purple-500/6 rounded-full blur-[150px] animate-smooth-flow" style="animation-duration: 25s; animation-delay: 5s;" />
+    <div class="fixed top-1/4 left-1/4 w-64 h-64 bg-green-500/12 rounded-full blur-[150px] animate-smooth-flow" style="animation-duration: 20s;" />
+    <div class="fixed top-3/4 right-1/4 w-64 h-64 bg-purple-500/12 rounded-full blur-[150px] animate-smooth-flow" style="animation-duration: 25s; animation-delay: 5s;" />
     
     <!-- Simplified Noise Texture -->
     <div class="fixed inset-0 opacity-[0.015]" style="background-image: url('data:image/svg+xml,%3Csvg width=\'200\' height=\'200\' viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence baseFrequency=\'0.5\' numOctaves=\'2\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\' opacity=\'0.3\'/%3E%3C/svg%3E');" />

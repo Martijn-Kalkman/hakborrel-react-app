@@ -11,8 +11,8 @@
     />
 
     <!-- Subtle side glows -->
-    <div class="absolute top-1/2 left-0 w-60 h-60 bg-green-500/8 rounded-full blur-[100px] -translate-y-1/2 animate-smooth-flow" style="animation-duration: 8s;" />
-    <div class="absolute top-1/2 right-0 w-60 h-60 bg-purple-500/8 rounded-full blur-[100px] -translate-y-1/2 animate-smooth-flow" style="animation-duration: 10s; animation-delay: 2s;" />
+    <div class="absolute top-1/2 left-0 w-60 h-60 bg-green-500/12 rounded-full blur-[100px] -translate-y-1/2 animate-smooth-flow" style="animation-duration: 8s;" />
+    <div class="absolute top-1/2 right-0 w-60 h-60 bg-purple-500/12 rounded-full blur-[100px] -translate-y-1/2 animate-smooth-flow" style="animation-duration: 10s; animation-delay: 2s;" />
     
     <!-- Subtle floating agenda indicators -->
     <div class="absolute top-1/4 left-1/4 w-4 h-4 bg-green-500/25 rounded-full animate-wave-motion" style="animation-duration: 6s;" />
@@ -23,7 +23,7 @@
     <div class="absolute bottom-1/3 right-1/3 w-2 h-2 bg-purple-500/15 rounded-full animate-atmospheric-drift" style="animation-delay: 3s;" />
     
     <!-- Subtle central accent -->
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-r from-green-500/4 to-purple-500/4 rounded-full blur-[120px] animate-subtle-glow" style="animation-duration: 6s;" />
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-r from-green-500/10 to-purple-500/10 rounded-full blur-[120px] animate-subtle-glow" style="animation-duration: 6s;" />
 
     <div class="container mx-auto px-4 sm:px-6 relative z-10">
       <!-- Professional header -->

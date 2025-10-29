@@ -21,16 +21,16 @@
             <div class="bg-[#00D32C]/10 p-4 rounded-xl border border-[#00D32C]/20">
               <Icon name="heroicons:heart" class="h-6 w-6" style="color: #00D32C;" />
             </div>
-            <h3 class="text-2xl font-bold text-white">Our Beginning</h3>
+            <h3 class="text-2xl font-bold text-white">Ons Begin</h3>
           </div>
           <div class="space-y-4 text-gray-300 text-base leading-relaxed">
             <p>
-              HAKborrel started as a simple idea: create a space where hardcore music lovers could gather without
-              pretense, without judgment, just pure energy and authentic connection.
+              HAKborrel begon als een simpel idee: creëer een ruimte waar hardcore muziekliefhebbers konden samenkomen zonder
+              pretentie, zonder oordeel, gewoon pure energie en authentieke verbinding.
             </p>
             <p>
-              What began as small gatherings in underground locations has grown into a movement that spans cities,
-              bringing together people who understand that hardcore isn't just music—it's a way of life.
+              Wat begon als kleine bijeenkomsten op underground locaties is uitgegroeid tot een beweging die steden omspant,
+              waarbij mensen samenkomen die begrijpen dat hardcore niet alleen muziek is—het is een levensstijl.
             </p>
           </div>
         </div>
@@ -41,11 +41,11 @@
               <div class="bg-[#00D32C]/10 p-3 rounded-lg border border-[#00D32C]/20 group-hover:bg-[#00D32C]/20 transition-colors">
                 <Icon name="heroicons:users" class="h-5 w-5" style="color: #00D32C;" />
               </div>
-              <h4 class="text-lg font-bold text-white">Community First</h4>
+              <h4 class="text-lg font-bold text-white">Community Eerst</h4>
             </div>
             <p class="text-gray-300 text-sm leading-relaxed">
-              Every event is built around the community. We believe in creating spaces where everyone feels welcome,
-              regardless of background or experience level.
+              Elk evenement is gebouwd rondom de community. Wij geloven in het creëren van ruimtes waar iedereen zich welkom voelt,
+              ongeacht achtergrond of ervaringsniveau.
             </p>
           </div>
 
@@ -54,11 +54,11 @@
               <div class="bg-purple-500/10 p-3 rounded-lg border border-purple-500/20 group-hover:bg-purple-500/20 transition-colors">
                 <Icon name="heroicons:musical-note" class="h-5 w-5 text-purple-500" />
               </div>
-              <h4 class="text-lg font-bold text-white">Music Quality</h4>
+              <h4 class="text-lg font-bold text-white">Muziekkwaliteit</h4>
             </div>
             <p class="text-gray-300 text-sm leading-relaxed">
-              We curate lineups that represent the best of hardcore music, from established legends to emerging
-              talents pushing the boundaries of the genre.
+              Wij cureren lineups die het beste van hardcore muziek vertegenwoordigen, van gevestigde legendes tot opkomende
+              talenten die de grenzen van het genre verleggen.
             </p>
           </div>
 
@@ -67,11 +67,11 @@
               <div class="bg-[#00D32C]/10 p-3 rounded-lg border border-[#00D32C]/20 group-hover:bg-[#00D32C]/20 transition-colors">
                 <Icon name="heroicons:bolt" class="h-5 w-5" style="color: #00D32C;" />
               </div>
-              <h4 class="text-lg font-bold text-white">Raw Energy</h4>
+              <h4 class="text-lg font-bold text-white">Ruwe Energie</h4>
             </div>
             <p class="text-gray-300 text-sm leading-relaxed">
-              Our events capture the raw, unfiltered energy that defines hardcore culture. No compromises, no
-              commercial considerations—just pure underground spirit.
+              Onze evenementen vangen de rauwe, ongefilterde energie die hardcore cultuur definieert. Geen compromissen, geen
+              commerciële overwegingen—gewoon pure underground geest.
             </p>
           </div>
 
@@ -80,11 +80,11 @@
               <div class="bg-purple-500/10 p-3 rounded-lg border border-purple-500/20 group-hover:bg-purple-500/20 transition-colors">
                 <Icon name="heroicons:heart" class="h-5 w-5 text-purple-500" />
               </div>
-              <h4 class="text-lg font-bold text-white">Authentic Experience</h4>
+              <h4 class="text-lg font-bold text-white">Authentieke Ervaring</h4>
             </div>
             <p class="text-gray-300 text-sm leading-relaxed">
-              From secret locations to intimate venues, every detail is designed to create an authentic underground
-              experience that honors the roots of hardcore culture.
+              Van geheime locaties tot intieme venues, elk detail is ontworpen om een authentieke underground
+              ervaring te creëren die de wortels van hardcore cultuur eert.
             </p>
           </div>
         </div>

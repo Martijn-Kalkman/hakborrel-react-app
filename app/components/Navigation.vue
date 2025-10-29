@@ -5,15 +5,13 @@
         <!-- Logo -->
         <NuxtLink to="/" class="flex items-center space-x-4 hover:opacity-80 transition-opacity">
           <NuxtImg 
-          src="/logo/HakBorrel-LOGOS_white 1.png"
-          alt="HakBorrel Logo"
-          class="object-contain flex-shrink-0"
-          style="width: 52px; height: 52px;"
-          loading="eager"
-          format="webp"
-          quality="100"
-          sizes="52px"
-        />
+            src="/logo/HakBorrel-LOGOS_white 1.png"
+            alt="HakBorrel Logo"
+            loading="eager"
+            format="webp"
+            quality="100"
+            sizes="40px"
+          />
           
           <span class="text-white font-display text-xl">HAKBORREL</span>
         </NuxtLink>
@@ -44,27 +42,15 @@
           <NuxtLink to="/tickets" class="text-gray-300 hover:text-white transition-colors font-body text-sm uppercase tracking-wide">
             TICKETS
           </NuxtLink>
+          <NuxtLink to="/secret" class="text-purple-400 hover:text-purple-300 transition-colors font-body text-sm uppercase tracking-wide border-l border-purple-500/30 pl-8">
+            SECRET CHAPTERS
+          </NuxtLink>
         </div>
 
         <!-- Right Side Actions -->
         <div class="hidden lg:flex items-center space-x-4">
-          <!-- Search Bar -->
-          <div class="relative">
-            <input 
-              type="text" 
-              placeholder="Zoeken..." 
-              class="bg-black/50 border border-white/20 rounded-lg px-4 py-2 pr-10 text-white placeholder-gray-400 text-sm focus:outline-none focus:border-green-500/50 transition-colors"
-            />
-            <Icon name="heroicons:magnifying-glass" size="16px" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-          </div>
-          
-          <!-- Login Button -->
-          <button class="bg-transparent border border-white/30 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-white/10 transition-colors">
-            INLOGGEN
-          </button>
-          
           <!-- Newsletter Button -->
-          <button class="bg-green-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-600 transition-colors">
+          <button class="bg-green-500 text-black px-3 py-1.5 rounded-lg text-md font-regular hover:cursor-pointer hover:bg-green-600 transition-colors">
             NIEUWSBRIEF
           </button>
         </div>
@@ -104,23 +90,13 @@
             <NuxtLink to="/tickets" @click="closeMobileMenu" class="text-gray-300 hover:text-white transition-colors font-body text-sm uppercase tracking-wide py-2">
               TICKETS
             </NuxtLink>
-            
-            <!-- Mobile Search -->
-            <div class="relative mt-4">
-              <input 
-                type="text" 
-                placeholder="Zoeken..." 
-                class="w-full bg-black/50 border border-white/20 rounded-lg px-4 py-2 pr-10 text-white placeholder-gray-400 text-sm focus:outline-none focus:border-green-500/50 transition-colors"
-              />
-              <Icon name="heroicons:magnifying-glass" size="16px" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-            </div>
+            <NuxtLink to="/secret" @click="closeMobileMenu" class="text-purple-400 hover:text-purple-300 transition-colors font-body text-sm uppercase tracking-wide py-2 border-t border-purple-500/30 pt-4 mt-4">
+              SECRET CHAPTERS
+            </NuxtLink>
             
             <!-- Mobile Buttons -->
-            <div class="flex space-x-2 mt-4">
-              <button class="flex-1 bg-transparent border border-white/30 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-white/10 transition-colors">
-                INLOGGEN
-              </button>
-              <button class="flex-1 bg-green-500 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-600 transition-colors">
+            <div class="mt-4">
+              <button class="w-full bg-green-500 text-black px-4 py-2 rounded-lg text-base font-medium hover:bg-green-600 transition-colors">
                 NIEUWSBRIEF
               </button>
             </div>

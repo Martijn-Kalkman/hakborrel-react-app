@@ -4,20 +4,14 @@
     <!-- Simplified diagonal pattern -->
     <div 
       class="absolute inset-0 opacity-3"
-      style="
-        background-image: repeating-linear-gradient(
-          45deg,
-          transparent,
-          transparent 4px,
-          rgba(255, 255, 255, 0.01) 4px,
-          rgba(255, 255, 255, 0.01) 8px
-        );
-      "
+      :style="{
+        backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(255, 255, 255, 0.01) 4px, rgba(255, 255, 255, 0.01) 8px)'
+      }"
     />
 
     <!-- Reduced corner glow effects - Only 2 instead of 4 -->
-    <div class="absolute top-0 left-0 w-[200px] sm:w-[300px] h-[200px] sm:h-[300px] bg-green-500/6 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2 animate-smooth-flow" />
-    <div class="absolute bottom-0 right-0 w-[200px] sm:w-[300px] h-[200px] sm:h-[300px] bg-purple-500/6 rounded-full blur-[100px] translate-x-1/2 translate-y-1/2 animate-smooth-flow" style="animation-delay: 3s;" />
+    <div class="absolute top-0 left-0 w-[200px] sm:w-[300px] h-[200px] sm:h-[300px] bg-green-500/12 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2 animate-smooth-flow" />
+    <div class="absolute bottom-0 right-0 w-[200px] sm:w-[300px] h-[200px] sm:h-[300px] bg-purple-500/12 rounded-full blur-[100px] translate-x-1/2 translate-y-1/2 animate-smooth-flow" style="animation-delay: 3s;" />
     
     <!-- Removed floating particles and atmospheric glows for better performance -->
 
@@ -29,11 +23,10 @@
           src="/logo/HakBorrel-LOGOS_white 1.png"
           alt="HakBorrel Logo"
           class="object-contain flex-shrink-0"
-          style="width: 112px; height: 112px;"
           loading="eager"
           format="webp"
           quality="100"
-          sizes="112px"
+          sizes="8px"
         />
         <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-display leading-tight flex-shrink-0">
           <span class="text-white">HAKBORREL</span>
@@ -63,7 +56,7 @@
               <div class="text-left flex-1">
                 <h3 class="text-gradient-primary text-xl font-heading mb-3">OPEN GATHERINGS</h3>
                 <p class="text-gray-300 text-sm leading-relaxed font-body">
-                  Public events for everyone. Experience the energy, feel the bass, join the collective underground movement.
+                  Openbare evenementen voor iedereen. Ervaar de energie, voel de bass, word onderdeel van de collectieve underground beweging.
                 </p>
               </div>
             </div>
@@ -84,11 +77,11 @@
               <div class="text-left flex-1">
                 <h3 class="text-gradient-secondary text-xl font-heading mb-3">COMMUNITY RAVES</h3>
                 <p class="text-gray-300 text-sm leading-relaxed font-body">
-                  Exclusive underground events. Hidden locations, secret lineups, intimate experiences for the initiated.
+                  Exclusieve underground evenementen. Verborgen locaties, geheime lineups, intieme ervaringen voor ingewijden.
                 </p>
               </div>
             </div>
-            <NuxtLink to="/tickets">
+            <NuxtLink to="/secret">
               <button class="btn-professional btn-secondary w-full text-white font-semibold py-3 text-base group-hover:scale-[1.02] cursor-pointer flex items-center justify-center gap-2">
                 GET TICKETS
                 <Icon name="heroicons:chevron-right" size="16px" />
@@ -106,7 +99,7 @@
               </div>
             </div>
             <h3 class="text-gradient-primary text-lg font-heading mb-2">EVENTS</h3>
-            <p class="text-gray-400 text-xs mb-4 font-body">Upcoming shows and festivals</p>
+            <p class="text-gray-400 text-xs mb-4 font-body">Aankomende shows en festivals</p>
             <NuxtLink to="/tickets">
               <button class="btn-professional px-4 py-2 text-xs group-hover:scale-105 cursor-pointer">
                 GET TICKETS
@@ -122,7 +115,7 @@
               </div>
             </div>
             <h3 class="text-gradient-secondary text-lg font-heading mb-2">COMMUNITY</h3>
-            <p class="text-gray-400 text-xs mb-4 font-body">Join the underground movement</p>
+            <p class="text-gray-400 text-xs mb-4 font-body">Word onderdeel van de underground beweging</p>
             <NuxtLink to="/tickets">
               <button class="btn-professional btn-secondary px-4 py-2 text-xs group-hover:scale-105 cursor-pointer">
                 GET TICKETS
@@ -138,7 +131,7 @@
               </div>
             </div>
             <h3 class="text-gradient-primary text-lg font-heading mb-2">MUSIC</h3>
-            <p class="text-gray-400 text-xs mb-4 font-body">Latest tracks and mixes</p>
+            <p class="text-gray-400 text-xs mb-4 font-body">Nieuwste tracks en mixes</p>
             <NuxtLink to="/tickets">
               <button class="btn-professional px-4 py-2 text-xs group-hover:scale-105 cursor-pointer">
                 GET TICKETS

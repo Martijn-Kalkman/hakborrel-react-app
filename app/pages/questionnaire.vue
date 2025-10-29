@@ -12,7 +12,7 @@
         <div class="inline-flex items-center gap-4 mb-8">
           <div class="w-1 h-12 bg-gradient-to-b from-green-500 to-green-500/50"></div>
           <h1 class="text-4xl md:text-6xl font-display">
-            <span class="text-white">TOELATINGS</span>
+            <span class="text-white">TOELATINGS </span>
             <span class="text-gradient-primary">VRAGENLIJST</span>
           </h1>
           <div class="w-1 h-12 bg-gradient-to-b from-green-500 to-green-500/50"></div>
@@ -22,14 +22,6 @@
         </p>
       </div>
 
-      <!-- Notice Banner -->
-      <div class="max-w-3xl mx-auto mb-6">
-        <div class="bg-yellow-500/20 border border-yellow-500/50 rounded-lg p-4">
-          <p class="text-yellow-500 font-body text-sm text-center">
-            ⚠️ Demo Mode: Form submissions are temporarily disabled for preview deployment.
-          </p>
-        </div>
-      </div>
 
       <!-- Form Container -->
       <div class="max-w-3xl mx-auto">
@@ -218,18 +210,13 @@ const submitForm = async () => {
   error.value = ''
   isSuccess.value = false
 
-  // Backend temporarily disabled for Vercel deployment
-  // TODO: Enable MongoDB connection for production
   try {
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    // const response = await $fetch('/api/submissions', {
-    //   method: 'POST',
-    //   body: form.value
-    // })
+    const response = await $fetch('/api/submissions', {
+      method: 'POST',
+      body: form.value
+    })
 
-    // if (response.success) {
+    if (response.success) {
       isSuccess.value = true
       // Reset form
       form.value = {
@@ -245,8 +232,14 @@ const submitForm = async () => {
       }
       // Scroll to top
       window.scrollTo({ top: 0, behavior: 'smooth' })
-    // }
+    }
   } catch (err) {
+    // Ignore aborted requests (shouldn't happen on form submit, but be safe)
+    if (err.name === 'AbortError' || err.message?.includes('aborted') || 
+        err.message?.includes('Premature close')) {
+      return
+    }
+    
     const errorMessage = err instanceof Error ? err.message : 'Er is een fout opgetreden. Probeer het opnieuw.'
     error.value = errorMessage
   } finally {

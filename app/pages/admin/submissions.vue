@@ -1,4 +1,4 @@
-<template>
+ <template>
   <div class="min-h-screen bg-black pt-24 pb-16">
     <!-- Background Effects -->
     <div class="fixed inset-0 bg-black" />
@@ -28,14 +28,6 @@
         </div>
       </div>
 
-      <!-- Notice Banner -->
-      <div class="mb-6">
-        <div class="bg-yellow-500/20 border border-yellow-500/50 rounded-lg p-4">
-          <p class="text-yellow-500 font-body text-sm text-center">
-            ⚠️ Demo Mode: Admin panel is temporarily disabled for preview deployment.
-          </p>
-        </div>
-      </div>
 
       <!-- Stats Cards -->
       <div v-if="stats" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
@@ -191,11 +183,12 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 
 const submissions = ref([])
 const selectedSubmission = ref(null)
 const loading = ref(true)
+const abortController = ref(null)
 
 const stats = computed(() => {
   if (!submissions.value.length) return null
@@ -235,20 +228,38 @@ const formatDateTime = (dateString) => {
 }
 
 const loadSubmissions = async () => {
-  // Backend temporarily disabled for Vercel deployment
-  // TODO: Enable MongoDB connection for production
+  // Cancel any existing request
+  if (abortController.value) {
+    abortController.value.abort()
+  }
+  
+  // Create new abort controller for this request
+  abortController.value = new AbortController()
+  
   try {
     loading.value = true
-    // Simulate loading
-    await new Promise(resolve => setTimeout(resolve, 500))
+    const response = await $fetch('/api/submissions', {
+      signal: abortController.value.signal,
+      // Prevent duplicate requests
+      key: 'submissions',
+      // Retry configuration
+      retry: 0
+    })
     
-    // const response = await $fetch('/api/submissions')
-    // submissions.value = response.submissions
-    
-    // Show empty state
-    submissions.value = []
+    if (response && response.submissions) {
+      submissions.value = response.submissions
+    }
   } catch (error) {
-    console.error('Failed to load submissions:', error)
+    // Ignore aborted requests (expected when component unmounts)
+    if (error.name === 'AbortError' || error.message?.includes('aborted') || 
+        error.message?.includes('cancelled')) {
+      return
+    }
+    
+    // Only log actual errors, not cancellations
+    if (!error.message?.includes('Premature close')) {
+      console.error('Failed to load submissions:', error)
+    }
   } finally {
     loading.value = false
   }
@@ -322,6 +333,13 @@ const escapeCSV = (value) => {
 
 onMounted(() => {
   loadSubmissions()
+})
+
+onBeforeUnmount(() => {
+  // Cancel any pending requests when component unmounts
+  if (abortController.value) {
+    abortController.value.abort()
+  }
 })
 </script>
 

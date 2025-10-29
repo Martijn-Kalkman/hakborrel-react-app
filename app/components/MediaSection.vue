@@ -41,7 +41,7 @@
           <div class="w-1 h-8 bg-purple-500"></div>
         </div>
         <p class="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
-          Relive the energy and atmosphere of our underground gatherings through our photo gallery.
+          Beleef de energie en sfeer van onze underground bijeenkomsten opnieuw door onze fotogalerij.
         </p>
       </div>
     </div>

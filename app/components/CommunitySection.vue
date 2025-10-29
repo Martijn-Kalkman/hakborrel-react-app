@@ -28,7 +28,7 @@
           <div class="w-1 h-8" style="background-color: #00D32C;"></div>
         </div>
         <p class="text-gray-300 text-lg max-w-3xl mx-auto mb-8 leading-relaxed">
-          Choose your experience: Open gatherings for everyone or exclusive secret events for the initiated.
+          Kies je ervaring: Open bijeenkomsten voor iedereen of exclusieve geheime evenementen voor ingewijden.
         </p>
       </div>
 
@@ -45,38 +45,38 @@
             </div>
             <div>
               <h3 class="text-2xl font-bold" style="color: #00D32C;">OPEN GATHERINGS</h3>
-              <p class="text-gray-400 text-sm">Public events for everyone</p>
+              <p class="text-gray-400 text-sm">Openbare evenementen voor iedereen</p>
             </div>
           </div>
 
           <div class="space-y-4 mb-8">
             <div class="flex items-center gap-3 text-gray-300">
               <Icon name="heroicons:users" class="text-[1.5rem]" style="color: #00D32C;" />
-              <span>Open to all hardcore enthusiasts</span>
+              <span>Open voor alle hardcore liefhebbers</span>
             </div>
             <div class="flex items-center gap-3 text-gray-300">
               <Icon name="heroicons:calendar" class="text-[1.5rem]" style="color: #00D32C;" />
-              <span>Regular monthly events</span>
+              <span>Reguliere maandelijkse evenementen</span>
             </div>
             <div class="flex items-center gap-3 text-gray-300">
               <Icon name="heroicons:map-pin" class="text-[1.5rem]" style="color: #00D32C;" />
-              <span>Public venues and locations</span>
+              <span>Openbare locaties en venues</span>
             </div>
             <div class="flex items-center gap-3 text-gray-300">
               <Icon name="heroicons:musical-note" class="text-[1.5rem]" style="color: #00D32C;" />
-              <span>Diverse lineup of DJs</span>
+              <span>Gevariëerde lineup van DJ's</span>
             </div>
           </div>
 
           <div class="space-y-4">
             <div class="bg-[#00D32C]/10 rounded-lg p-4">
-              <h4 class="font-semibold mb-2" style="color: #00D32C;">Next Open Event</h4>
+              <h4 class="font-semibold mb-2" style="color: #00D32C;">Volgend Open Evenement</h4>
               <p class="text-gray-300 text-sm mb-2">UNDERGROUND RAVE #23</p>
               <p class="text-gray-400 text-xs">March 15, 2024 • Secret Location, Amsterdam</p>
             </div>
             
             <button class="w-full font-semibold py-3 text-lg group-hover:scale-[1.02] cursor-pointer rounded-md transition-all text-black hover:opacity-90" style="background-color: #00D32C;">
-              VIEW OPEN EVENTS
+              OPEN EVENEMENTEN BEKIJKEN
             </button>
           </div>
         </div>
@@ -92,45 +92,45 @@
             </div>
             <div>
               <h3 class="text-purple-500 text-2xl font-bold">SECRET EVENTS</h3>
-              <p class="text-gray-400 text-sm">Exclusive underground gatherings</p>
+              <p class="text-gray-400 text-sm">Exclusieve underground bijeenkomsten</p>
             </div>
           </div>
 
           <div class="space-y-4 mb-8">
             <div class="flex items-center gap-3 text-gray-300">
               <Icon name="heroicons:lock-closed" class="text-[1.5rem] text-purple-500" />
-              <span>Invite-only community access</span>
+              <span>Alleen op uitnodiging community toegang</span>
             </div>
             <div class="flex items-center gap-3 text-gray-300">
               <Icon name="heroicons:map-pin" class="text-[1.5rem] text-purple-500" />
-              <span>Hidden locations revealed 24h before</span>
+              <span>Verborgen locaties onthuld 24 uur van tevoren</span>
             </div>
             <div class="flex items-center gap-3 text-gray-300">
               <Icon name="heroicons:musical-note" class="text-[1.5rem] text-purple-500" />
-              <span>Secret lineups and special guests</span>
+              <span>Geheime lineups en speciale gasten</span>
             </div>
             <div class="flex items-center gap-3 text-gray-300">
               <Icon name="heroicons:users" class="text-[1.5rem] text-purple-500" />
-              <span>Intimate atmosphere, limited capacity</span>
+              <span>Intieme sfeer, beperkte capaciteit</span>
             </div>
           </div>
 
           <div class="space-y-4">
             <div class="bg-purple-500/10 rounded-lg p-4">
-              <h4 class="text-purple-500 font-semibold mb-2">Access Required</h4>
-              <p class="text-gray-300 text-sm mb-2">Enter your community code to unlock</p>
-              <p class="text-gray-400 text-xs">Attend an event to receive your access code</p>
+              <h4 class="text-purple-500 font-semibold mb-2">Toegang Vereist</h4>
+              <p class="text-gray-300 text-sm mb-2">Voer je community code in om te ontgrendelen</p>
+              <p class="text-gray-400 text-xs">Woon een evenement bij om je toegangscode te ontvangen</p>
             </div>
 
             <div class="space-y-3">
               <input
                 type="text"
-                placeholder="Enter your code..."
+                placeholder="Voer je code in..."
                 class="bg-black/40 border-purple-500/50 text-white placeholder:text-gray-400 focus:border-purple-500 h-10 w-full rounded-md border px-3 py-2 text-sm transition-colors outline-none"
               />
 
               <button class="w-full bg-purple-500 hover:bg-purple-500/90 text-white font-semibold py-3 text-lg rounded-md transition-all">
-                UNLOCK SECRET ACCESS
+                GEHEIME TOEGANG ONTSLUITEN
               </button>
             </div>
           </div>
@@ -140,28 +140,28 @@
       <!-- Additional info -->
       <div class="mt-12 text-center">
         <div class="bg-black/60 backdrop-blur-sm border border-gray-700/50 rounded-xl p-6 max-w-4xl mx-auto">
-          <h4 class="text-white text-lg font-bold mb-4">HOW IT WORKS</h4>
+          <h4 class="text-white text-lg font-bold mb-4">HOE HET WERKT</h4>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-gray-300">
             <div class="text-center">
               <div class="bg-[#00D32C]/20 w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-3">
                 <span class="text-[#00D32C] font-bold">1</span>
               </div>
-              <h5 class="font-semibold mb-2">Attend Open Events</h5>
-              <p>Start with our public gatherings to experience the community</p>
+              <h5 class="font-semibold mb-2">Woon Open Evenementen Bij</h5>
+              <p>Begin met onze openbare bijeenkomsten om de community te ervaren</p>
             </div>
             <div class="text-center">
               <div class="bg-purple-500/20 w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-3">
                 <span class="text-purple-500 font-bold">2</span>
               </div>
-              <h5 class="font-semibold mb-2">Get Your Code</h5>
-              <p>Receive your exclusive access code at the event</p>
+              <h5 class="font-semibold mb-2">Krijg Je Code</h5>
+              <p>Ontvang je exclusieve toegangscode bij het evenement</p>
             </div>
             <div class="text-center">
               <div class="bg-[#00D32C]/20 w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-3">
                 <span class="text-[#00D32C] font-bold">3</span>
               </div>
-              <h5 class="font-semibold mb-2">Unlock Secrets</h5>
-              <p>Access exclusive events and hidden locations</p>
+              <h5 class="font-semibold mb-2">Ontsluit Geheimen</h5>
+              <p>Krijg toegang tot exclusieve evenementen en verborgen locaties</p>
             </div>
           </div>
         </div>
