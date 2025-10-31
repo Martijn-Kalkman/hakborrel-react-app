@@ -5,7 +5,7 @@
         <!-- Logo -->
         <NuxtLink to="/" class="flex items-center space-x-4 hover:opacity-80 transition-opacity">
           <NuxtImg 
-            src="/logo/HakBorrel-LOGOS_white 1.png"
+            :src="logoPath"
             alt="HakBorrel Logo"
             loading="eager"
             format="webp"
@@ -18,28 +18,40 @@
 
         <!-- Navigation Links -->
         <div class="hidden lg:flex items-center space-x-8">
-          <NuxtLink to="/#home" class="text-gray-300 hover:text-white transition-colors font-body text-sm uppercase tracking-wide">
+          <NuxtLink to="/#home" :class="[
+            'transition-colors font-body text-sm uppercase tracking-wide',
+            activeSection === 'home' ? 'text-green-500 font-semibold' : 'text-gray-300 hover:text-white'
+          ]">
             HOME
           </NuxtLink>
-          <NuxtLink to="/#events" class="text-gray-300 hover:text-white transition-colors font-body text-sm uppercase tracking-wide">
+          <NuxtLink to="/#events" :class="[
+            'transition-colors font-body text-sm uppercase tracking-wide',
+            activeSection === 'events' ? 'text-green-500 font-semibold' : 'text-gray-300 hover:text-white'
+          ]">
             EVENTS
           </NuxtLink>
-          <NuxtLink to="/#agenda" class="text-gray-300 hover:text-white transition-colors font-body text-sm uppercase tracking-wide">
-            AGENDA
-          </NuxtLink>
-          <NuxtLink to="/#videos" class="text-gray-300 hover:text-white transition-colors font-body text-sm uppercase tracking-wide">
-            VIDEO'S
-          </NuxtLink>
-          <NuxtLink to="/#community" class="text-gray-300 hover:text-white transition-colors font-body text-sm uppercase tracking-wide">
+          <NuxtLink to="/#community" :class="[
+            'transition-colors font-body text-sm uppercase tracking-wide',
+            activeSection === 'community' ? 'text-green-500 font-semibold' : 'text-gray-300 hover:text-white'
+          ]">
             COMMUNITY
           </NuxtLink>
-          <NuxtLink to="/#story" class="text-gray-300 hover:text-white transition-colors font-body text-sm uppercase tracking-wide">
+          <NuxtLink to="/#story" :class="[
+            'transition-colors font-body text-sm uppercase tracking-wide',
+            activeSection === 'story' ? 'text-green-500 font-semibold' : 'text-gray-300 hover:text-white'
+          ]">
             STORY
           </NuxtLink>
-          <NuxtLink to="/#media" class="text-gray-300 hover:text-white transition-colors font-body text-sm uppercase tracking-wide">
-            MEDIA
+          <NuxtLink to="/#media" :class="[
+            'transition-colors font-body text-sm uppercase tracking-wide',
+            activeSection === 'media' ? 'text-green-500 font-semibold' : 'text-gray-300 hover:text-white'
+          ]">
+            CONTENT
           </NuxtLink>
-          <NuxtLink to="/tickets" class="text-gray-300 hover:text-white transition-colors font-body text-sm uppercase tracking-wide">
+          <NuxtLink to="/tickets" :class="[
+            'transition-colors font-body text-sm uppercase tracking-wide',
+            $route.path === '/tickets' ? 'text-green-500 font-semibold' : 'text-gray-300 hover:text-white'
+          ]">
             TICKETS
           </NuxtLink>
           <NuxtLink to="/secret" class="text-purple-400 hover:text-purple-300 transition-colors font-body text-sm uppercase tracking-wide border-l border-purple-500/30 pl-8">
@@ -66,28 +78,40 @@
       <Transition name="slide-down" appear>
         <div v-if="isMobileMenuOpen" class="lg:hidden mt-4 pb-4 border-t border-white/10 overflow-hidden">
           <div class="flex flex-col space-y-4 pt-4">
-            <NuxtLink to="/#home" @click="closeMobileMenu" class="text-gray-300 hover:text-white transition-colors font-body text-sm uppercase tracking-wide py-2">
+            <NuxtLink to="/#home" @click="closeMobileMenu" :class="[
+              'transition-colors font-body text-sm uppercase tracking-wide py-2',
+              activeSection === 'home' ? 'text-green-500 font-semibold' : 'text-gray-300 hover:text-white'
+            ]">
               HOME
             </NuxtLink>
-            <NuxtLink to="/#events" @click="closeMobileMenu" class="text-gray-300 hover:text-white transition-colors font-body text-sm uppercase tracking-wide py-2">
+            <NuxtLink to="/#events" @click="closeMobileMenu" :class="[
+              'transition-colors font-body text-sm uppercase tracking-wide py-2',
+              activeSection === 'events' ? 'text-green-500 font-semibold' : 'text-gray-300 hover:text-white'
+            ]">
               EVENTS
             </NuxtLink>
-            <NuxtLink to="/#agenda" @click="closeMobileMenu" class="text-gray-300 hover:text-white transition-colors font-body text-sm uppercase tracking-wide py-2">
-              AGENDA
-            </NuxtLink>
-            <NuxtLink to="/#videos" @click="closeMobileMenu" class="text-gray-300 hover:text-white transition-colors font-body text-sm uppercase tracking-wide py-2">
-              VIDEO'S
-            </NuxtLink>
-            <NuxtLink to="/#community" @click="closeMobileMenu" class="text-gray-300 hover:text-white transition-colors font-body text-sm uppercase tracking-wide py-2">
+            <NuxtLink to="/#community" @click="closeMobileMenu" :class="[
+              'transition-colors font-body text-sm uppercase tracking-wide py-2',
+              activeSection === 'community' ? 'text-green-500 font-semibold' : 'text-gray-300 hover:text-white'
+            ]">
               COMMUNITY
             </NuxtLink>
-            <NuxtLink to="/#story" @click="closeMobileMenu" class="text-gray-300 hover:text-white transition-colors font-body text-sm uppercase tracking-wide py-2">
+            <NuxtLink to="/#story" @click="closeMobileMenu" :class="[
+              'transition-colors font-body text-sm uppercase tracking-wide py-2',
+              activeSection === 'story' ? 'text-green-500 font-semibold' : 'text-gray-300 hover:text-white'
+            ]">
               STORY
             </NuxtLink>
-            <NuxtLink to="/#media" @click="closeMobileMenu" class="text-gray-300 hover:text-white transition-colors font-body text-sm uppercase tracking-wide py-2">
-              MEDIA
+            <NuxtLink to="/#media" @click="closeMobileMenu" :class="[
+              'transition-colors font-body text-sm uppercase tracking-wide py-2',
+              activeSection === 'media' ? 'text-green-500 font-semibold' : 'text-gray-300 hover:text-white'
+            ]">
+              CONTENT
             </NuxtLink>
-            <NuxtLink to="/tickets" @click="closeMobileMenu" class="text-gray-300 hover:text-white transition-colors font-body text-sm uppercase tracking-wide py-2">
+            <NuxtLink to="/tickets" @click="closeMobileMenu" :class="[
+              'transition-colors font-body text-sm uppercase tracking-wide py-2',
+              $route.path === '/tickets' ? 'text-green-500 font-semibold' : 'text-gray-300 hover:text-white'
+            ]">
               TICKETS
             </NuxtLink>
             <NuxtLink to="/secret" @click="closeMobileMenu" class="text-purple-400 hover:text-purple-300 transition-colors font-body text-sm uppercase tracking-wide py-2 border-t border-purple-500/30 pt-4 mt-4">
@@ -108,9 +132,12 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted, watch } from 'vue'
+
+const logoPath = '/logo/HakBorrel-LOGOS_white 1.png'
 
 const isMobileMenuOpen = ref(false)
+const activeSection = ref('home')
 
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value
@@ -119,6 +146,123 @@ const toggleMobileMenu = () => {
 const closeMobileMenu = () => {
   isMobileMenuOpen.value = false
 }
+
+const route = useRoute()
+let observer = null
+let scrollHandler = null
+
+// Track active section using Intersection Observer
+const updateActiveSection = () => {
+  if (typeof window === 'undefined') return
+  
+  // Only track sections on home page
+  if (route.path !== '/') {
+    activeSection.value = ''
+    return
+  }
+  
+  const sections = ['home', 'events', 'community', 'story', 'media']
+  const observerOptions = {
+    root: null,
+    rootMargin: '-30% 0px -50% 0px', // Trigger when section is in middle 20% of viewport
+    threshold: 0
+  }
+
+  const observerCallback = (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const sectionId = entry.target.id
+        if (sections.includes(sectionId)) {
+          activeSection.value = sectionId
+        }
+      }
+    })
+  }
+
+  observer = new IntersectionObserver(observerCallback, observerOptions)
+
+  // Observe all sections
+  sections.forEach((sectionId) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      observer?.observe(element)
+    }
+  })
+
+  // Also check on scroll for better responsiveness
+  scrollHandler = () => {
+    const scrollPosition = window.scrollY + window.innerHeight / 3
+    
+    for (const sectionId of sections) {
+      const element = document.getElementById(sectionId)
+      if (element) {
+        const rect = element.getBoundingClientRect()
+        const elementTop = rect.top + window.scrollY
+        const elementBottom = elementTop + rect.height
+        
+        if (scrollPosition >= elementTop - 100 && scrollPosition < elementBottom) {
+          activeSection.value = sectionId
+          break
+        }
+      }
+    }
+  }
+
+  window.addEventListener('scroll', scrollHandler, { passive: true })
+
+  // Initial check
+  scrollHandler()
+
+  return () => {
+    if (observer) {
+      observer.disconnect()
+      observer = null
+    }
+    if (scrollHandler) {
+      window.removeEventListener('scroll', scrollHandler)
+      scrollHandler = null
+    }
+  }
+}
+
+onMounted(() => {
+  // Wait a bit for sections to be rendered
+  setTimeout(() => {
+    if (route.path === '/') {
+      updateActiveSection()
+    }
+  }, 100)
+})
+
+onUnmounted(() => {
+  if (observer) {
+    observer.disconnect()
+    observer = null
+  }
+  if (scrollHandler) {
+    window.removeEventListener('scroll', scrollHandler)
+    scrollHandler = null
+  }
+})
+
+// Watch for route changes
+watch(() => route.path, (newPath) => {
+  if (newPath === '/') {
+    setTimeout(() => {
+      updateActiveSection()
+    }, 100)
+  } else {
+    activeSection.value = ''
+    if (observer) {
+      observer.disconnect()
+      observer = null
+    }
+    if (scrollHandler) {
+      window.removeEventListener('scroll', scrollHandler)
+      scrollHandler = null
+    }
+  }
+})
 </script>
 
 <style scoped>

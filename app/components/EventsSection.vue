@@ -47,7 +47,7 @@
           <button
             @click="showingPastEvents = false"
             :class="[
-              'px-6 sm:px-8 md:px-10 py-2 sm:py-3 rounded-md transition-all duration-300 font-semibold text-xs sm:text-sm md:text-base',
+              'px-6 sm:px-8 md:px-10 py-2 sm:py-3 rounded-md transition-all duration-300 font-semibold text-xs sm:text-sm md:text-base cursor-pointer',
               showingPastEvents 
                 ? 'text-gray-400 hover:text-gray-300' 
                 : 'bg-green-500 text-black shadow-lg'
@@ -58,7 +58,7 @@
           <button
             @click="showingPastEvents = true"
             :class="[
-              'px-6 sm:px-8 md:px-10 py-2 sm:py-3 rounded-md transition-all duration-300 font-semibold text-xs sm:text-sm md:text-base',
+              'px-6 sm:px-8 md:px-10 py-2 sm:py-3 rounded-md transition-all duration-300 font-semibold text-xs sm:text-sm md:text-base cursor-pointer',
               showingPastEvents 
                 ? 'bg-green-500 text-black shadow-lg' 
                 : 'text-gray-400 hover:text-gray-300'

@@ -34,7 +34,7 @@
         <div class="lg:col-span-1">
           <div class="flex items-center gap-3 mb-6">
             <NuxtImg 
-              src="/logo/HakBorrel-LOGOS_white 1.png"
+              :src="logoPath"
               alt="HakBorrel Logo"
               loading="lazy"
               format="webp"
@@ -183,6 +183,8 @@
 
 <script setup>
 import { ref } from 'vue'
+
+const logoPath = '/logo/HakBorrel-LOGOS_white 1.png'
 
 const email = ref('')
 

@@ -40,15 +40,43 @@
           <div class="w-1 h-4 sm:h-6 md:h-8 bg-purple-500"></div>
         </div>
         <p class="text-gray-300 text-xs sm:text-sm md:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed px-2">
-          Beleef de energie en sfeer van onze underground bijeenkomsten opnieuw door onze fotogalerij.
+          Beleef de energie en sfeer van onze underground bijeenkomsten opnieuw.
         </p>
       </div>
 
+      <!-- Content Selector/Tabs -->
+      <div class="flex justify-center mb-4 sm:mb-6 md:mb-8 flex-shrink-0">
+        <div class="bg-black/40 backdrop-blur-sm border border-purple-500/30 rounded-lg p-1 flex gap-1">
+          <button
+            @click="showingVideo = true"
+            :class="[
+              'px-6 sm:px-8 md:px-10 py-2 sm:py-3 rounded-md transition-all duration-300 font-semibold text-xs sm:text-sm md:text-base cursor-pointer',
+              showingVideo 
+                ? 'bg-purple-500 text-white shadow-lg' 
+                : 'text-gray-400 hover:text-gray-300'
+            ]"
+          >
+            FEATURED VIDEO
+          </button>
+          <button
+            @click="showingVideo = false"
+            :class="[
+              'px-6 sm:px-8 md:px-10 py-2 sm:py-3 rounded-md transition-all duration-300 font-semibold text-xs sm:text-sm md:text-base cursor-pointer',
+              showingVideo 
+                ? 'text-gray-400 hover:text-gray-300' 
+                : 'bg-purple-500 text-white shadow-lg'
+            ]"
+          >
+            FOTO GALERIJ
+          </button>
+        </div>
+      </div>
+
       <!-- Featured Video -->
-      <div class="max-w-4xl mx-auto mb-4 sm:mb-6 md:mb-8 lg:mb-10 flex-shrink-0">
+      <div v-if="showingVideo" class="max-w-4xl mx-auto mb-4 sm:mb-6 md:mb-8 lg:mb-10 flex-shrink-0 w-full">
         <div class="relative bg-black rounded-lg overflow-hidden border border-purple-500/30 hover:border-purple-500 transition-all duration-300 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] video-player-container group">
           <!-- Video Player with Overlays -->
-          <div class="relative aspect-video w-full bg-black overflow-hidden">
+          <div class="relative w-full bg-black" style="position: relative; padding-bottom: 56.25%; height: 0; width: 100%;">
             <!-- YouTube Video Embed - Privacy Enhanced (No Cookies) -->
             <iframe 
               :src="youtubeEmbedUrl"
@@ -58,8 +86,8 @@
               allowfullscreen
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
-              class="absolute inset-0 w-full h-full"
-              style="border: none; z-index: 1;"
+              class="absolute top-0 left-0"
+              style="width: 100%; height: 100%; border: none; z-index: 1; position: absolute;"
             ></iframe>
             
             <!-- Top Left - Video Info Overlay -->
@@ -81,12 +109,6 @@
               </button>
             </div>
             
-            <!-- Center - YouTube Play Button Overlay (shown on hover or as preview) -->
-            <div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <div class="bg-red-600 rounded-full p-4 sm:p-6 shadow-2xl">
-                <Icon name="heroicons:play" class="w-8 h-8 sm:w-12 sm:h-12 text-white ml-1" />
-              </div>
-            </div>
             
             <!-- Bottom Left - YouTube Branding -->
             <div class="absolute bottom-3 left-3 z-20 flex items-center gap-2 bg-black/70 backdrop-blur-sm px-3 py-1.5 rounded-lg pointer-events-auto">
@@ -99,10 +121,40 @@
           </div>
         </div>
       </div>
+
+      <!-- Photo Collections Grid (shown when Foto Galerij is selected) -->
+      <div v-if="!showingVideo" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6 md:mb-8 flex-1 max-w-5xl mx-auto">
+        <div 
+          v-for="collection in photoCollections" 
+          :key="collection.id" 
+          @click="openCollection(collection)"
+          class="group relative overflow-hidden rounded-lg bg-black/60 backdrop-blur-sm border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300 cursor-pointer aspect-square"
+        >
+          <div class="relative w-full h-full overflow-hidden bg-black/40">
+            <NuxtImg
+              :src="collection.thumbnail"
+              :alt="collection.title"
+              class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+              format="webp"
+              quality="95"
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+            <div class="absolute bottom-0 left-0 right-0 p-2 sm:p-3">
+              <h3 class="text-white font-semibold text-xs sm:text-sm mb-0.5 sm:mb-1">{{ collection.title }}</h3>
+              <p class="text-gray-300 text-[10px] sm:text-xs">{{ collection.photoCount }} foto's</p>
+            </div>
+            <div class="absolute top-2 right-2 bg-purple-500/90 backdrop-blur-sm px-1.5 py-0.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span class="text-white text-[10px] sm:text-xs font-semibold">BEKIJKEN</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Full Width Swiper -->
-    <div class="mb-2 sm:mb-3 md:mb-4 lg:mb-6 -mx-3 sm:-mx-4 md:-mx-6 flex-shrink-0">
+    <!-- Full Width Swiper (always visible at bottom) - COMMENTED OUT -->
+    <!-- <div class="mb-2 sm:mb-3 md:mb-4 lg:mb-6 -mx-3 sm:-mx-4 md:-mx-6 flex-shrink-0">
         <Swiper
           ref="swiperInstance"
           :modules="modules"
@@ -147,7 +199,71 @@
             </div>
           </SwiperSlide>
         </Swiper>
+      </div> -->
+
+    <!-- Photo Gallery Modal/Lightbox -->
+    <Teleport to="body">
+      <div 
+        v-if="selectedCollection" 
+        @click.self="closeCollection"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 backdrop-blur-sm"
+      >
+        <!-- Close Button -->
+        <button 
+          @click="closeCollection" 
+          class="absolute top-4 right-4 z-10 text-gray-400 hover:text-white transition-colors bg-black/50 rounded-full p-2"
+        >
+          <Icon name="heroicons:x-mark" class="h-6 w-6" />
+        </button>
+
+        <!-- Collection Info -->
+        <div class="absolute top-4 left-4 z-10 bg-black/70 backdrop-blur-sm px-4 py-2 rounded-lg">
+          <h3 class="text-white text-lg font-bold mb-1">{{ selectedCollection.title }}</h3>
+          <p class="text-gray-300 text-sm">{{ currentPhotoIndex + 1 }} / {{ selectedCollection.photos.length }}</p>
+        </div>
+
+        <!-- Photo Slider -->
+        <div class="max-w-6xl w-full relative">
+          <Swiper
+            ref="gallerySwiper"
+            :modules="galleryModules"
+            :slides-per-view="1"
+            :space-between="20"
+            :navigation="true"
+            :keyboard="{ enabled: true }"
+            class="gallery-swiper"
+            @slideChange="onSlideChange"
+          >
+            <SwiperSlide v-for="(photo, index) in selectedCollection.photos" :key="index">
+              <div class="relative aspect-video bg-black rounded-lg overflow-hidden">
+                <NuxtImg
+                  :src="photo.src"
+                  :alt="photo.title || `${selectedCollection.title} - Foto ${index + 1}`"
+                  class="object-contain w-full h-full"
+                  loading="eager"
+                  format="webp"
+                  quality="100"
+                />
+              </div>
+            </SwiperSlide>
+          </Swiper>
+        </div>
+
+        <!-- Navigation Arrows (custom if needed) -->
+        <button
+          @click="previousPhoto"
+          class="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 rounded-full p-3 text-white transition-all"
+        >
+          <Icon name="heroicons:chevron-left" class="h-6 w-6" />
+        </button>
+        <button
+          @click="nextPhoto"
+          class="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 rounded-full p-3 text-white transition-all"
+        >
+          <Icon name="heroicons:chevron-right" class="h-6 w-6" />
+        </button>
       </div>
+    </Teleport>
 
     <!-- Social Media Icons with Container -->
     <div class="container mx-auto px-3 sm:px-4 md:px-6 relative z-10 flex-shrink-0">
@@ -188,25 +304,128 @@
           <span class="text-gray-400 text-sm group-hover:text-white transition-colors">Instagram</span>
         </a>
       </div>
-
-      <div class="text-center mt-3 sm:mt-4 md:mt-6 lg:mt-8 mb-3 sm:mb-4 md:mb-6 lg:mb-8">
-        <NuxtLink to="/tickets">
-          <button class="bg-purple-500 hover:bg-purple-500/90 text-white font-semibold px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl cursor-pointer text-xs sm:text-sm md:text-base">
-            GET TICKETS
-          </button>
-        </NuxtLink>
-      </div>
     </div>
   </section>
 </template>
 
 <script setup>
 import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Autoplay } from 'swiper/modules'
+import { Autoplay, Navigation, Keyboard } from 'swiper/modules'
 import { ref, computed } from 'vue'
 import 'swiper/css'
+import 'swiper/css/navigation'
 
 const modules = [Autoplay]
+const galleryModules = [Navigation, Keyboard]
+
+// Toggle state for showing video or gallery
+const showingVideo = ref(true)
+
+// Selected collection for gallery modal
+const selectedCollection = ref(null)
+const gallerySwiper = ref(null)
+const currentPhotoIndex = ref(0)
+
+// Photo collections
+const photoCollections = [
+  {
+    id: 1,
+    title: "UNDERGROUND RAVE #23",
+    photoCount: 12,
+    thumbnail: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop&crop=center",
+    photos: [
+      { src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&h=800&fit=crop&crop=center", title: "Underground Rave #23 - Foto 1" },
+      { src: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1200&h=800&fit=crop&crop=center", title: "Underground Rave #23 - Foto 2" },
+      { src: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&h=800&fit=crop&crop=center", title: "Underground Rave #23 - Foto 3" },
+      { src: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1200&h=800&fit=crop&crop=center", title: "Underground Rave #23 - Foto 4" },
+      { src: "https://images.unsplash.com/photo-1553783308-b9bb4ba7e9d1?w=1200&h=800&fit=crop&crop=center", title: "Underground Rave #23 - Foto 5" },
+      { src: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1200&h=800&fit=crop&crop=center", title: "Underground Rave #23 - Foto 6" },
+      { src: "https://images.unsplash.com/photo-1470229538611-16ba8c7ffbd7?w=1200&h=800&fit=crop&crop=center", title: "Underground Rave #23 - Foto 7" },
+      { src: "https://images.unsplash.com/photo-1533616688419-b7a585564566?w=1200&h=800&fit=crop&crop=center", title: "Underground Rave #23 - Foto 8" },
+      { src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&h=800&fit=crop&crop=center", title: "Underground Rave #23 - Foto 9" },
+      { src: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1200&h=800&fit=crop&crop=center", title: "Underground Rave #23 - Foto 10" },
+      { src: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&h=800&fit=crop&crop=center", title: "Underground Rave #23 - Foto 11" },
+      { src: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1200&h=800&fit=crop&crop=center", title: "Underground Rave #23 - Foto 12" }
+    ]
+  },
+  {
+    id: 2,
+    title: "HARDCORE FESTIVAL 2024",
+    photoCount: 15,
+    thumbnail: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&h=400&fit=crop&crop=center",
+    photos: [
+      { src: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1200&h=800&fit=crop&crop=center", title: "Hardcore Festival 2024 - Foto 1" },
+      { src: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&h=800&fit=crop&crop=center", title: "Hardcore Festival 2024 - Foto 2" },
+      { src: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1200&h=800&fit=crop&crop=center", title: "Hardcore Festival 2024 - Foto 3" },
+      { src: "https://images.unsplash.com/photo-1553783308-b9bb4ba7e9d1?w=1200&h=800&fit=crop&crop=center", title: "Hardcore Festival 2024 - Foto 4" },
+      { src: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1200&h=800&fit=crop&crop=center", title: "Hardcore Festival 2024 - Foto 5" },
+      { src: "https://images.unsplash.com/photo-1470229538611-16ba8c7ffbd7?w=1200&h=800&fit=crop&crop=center", title: "Hardcore Festival 2024 - Foto 6" },
+      { src: "https://images.unsplash.com/photo-1533616688419-b7a585564566?w=1200&h=800&fit=crop&crop=center", title: "Hardcore Festival 2024 - Foto 7" },
+      { src: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1200&h=800&fit=crop&crop=center", title: "Hardcore Festival 2024 - Foto 8" },
+      { src: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&h=800&fit=crop&crop=center", title: "Hardcore Festival 2024 - Foto 9" },
+      { src: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1200&h=800&fit=crop&crop=center", title: "Hardcore Festival 2024 - Foto 10" },
+      { src: "https://images.unsplash.com/photo-1553783308-b9bb4ba7e9d1?w=1200&h=800&fit=crop&crop=center", title: "Hardcore Festival 2024 - Foto 11" },
+      { src: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1200&h=800&fit=crop&crop=center", title: "Hardcore Festival 2024 - Foto 12" },
+      { src: "https://images.unsplash.com/photo-1470229538611-16ba8c7ffbd7?w=1200&h=800&fit=crop&crop=center", title: "Hardcore Festival 2024 - Foto 13" },
+      { src: "https://images.unsplash.com/photo-1533616688419-b7a585564566?w=1200&h=800&fit=crop&crop=center", title: "Hardcore Festival 2024 - Foto 14" },
+      { src: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1200&h=800&fit=crop&crop=center", title: "Hardcore Festival 2024 - Foto 15" }
+    ]
+  },
+  {
+    id: 3,
+    title: "MIDNIGHT SESSIONS",
+    photoCount: 10,
+    thumbnail: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=400&fit=crop&crop=center",
+    photos: [
+      { src: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&h=800&fit=crop&crop=center", title: "Midnight Sessions - Foto 1" },
+      { src: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1200&h=800&fit=crop&crop=center", title: "Midnight Sessions - Foto 2" },
+      { src: "https://images.unsplash.com/photo-1553783308-b9bb4ba7e9d1?w=1200&h=800&fit=crop&crop=center", title: "Midnight Sessions - Foto 3" },
+      { src: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1200&h=800&fit=crop&crop=center", title: "Midnight Sessions - Foto 4" },
+      { src: "https://images.unsplash.com/photo-1470229538611-16ba8c7ffbd7?w=1200&h=800&fit=crop&crop=center", title: "Midnight Sessions - Foto 5" },
+      { src: "https://images.unsplash.com/photo-1533616688419-b7a585564566?w=1200&h=800&fit=crop&crop=center", title: "Midnight Sessions - Foto 6" },
+      { src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&h=800&fit=crop&crop=center", title: "Midnight Sessions - Foto 7" },
+      { src: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1200&h=800&fit=crop&crop=center", title: "Midnight Sessions - Foto 8" },
+      { src: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&h=800&fit=crop&crop=center", title: "Midnight Sessions - Foto 9" },
+      { src: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1200&h=800&fit=crop&crop=center", title: "Midnight Sessions - Foto 10" }
+    ]
+  },
+]
+
+// Open collection modal
+const openCollection = (collection) => {
+  selectedCollection.value = collection
+  currentPhotoIndex.value = 0
+  if (process.client) {
+    document.body.style.overflow = 'hidden'
+  }
+}
+
+// Close collection modal
+const closeCollection = () => {
+  selectedCollection.value = null
+  currentPhotoIndex.value = 0
+  if (process.client) {
+    document.body.style.overflow = ''
+  }
+}
+
+// Navigation functions for gallery
+const nextPhoto = () => {
+  if (gallerySwiper.value && gallerySwiper.value.swiper) {
+    gallerySwiper.value.swiper.slideNext()
+  }
+}
+
+const previousPhoto = () => {
+  if (gallerySwiper.value && gallerySwiper.value.swiper) {
+    gallerySwiper.value.swiper.slidePrev()
+  }
+}
+
+// Update current photo index when slide changes
+const onSlideChange = (swiper) => {
+  currentPhotoIndex.value = swiper.activeIndex
+}
 
 // Content section with video and photo grid
 
@@ -216,9 +435,15 @@ const youtubeUrl = 'https://www.youtube.com/watch?v=SOH49z-S0G0'
 // Convert YouTube URL to privacy-enhanced embed URL (no cookies, no ads)
 const youtubeEmbedUrl = computed(() => {
   const videoId = youtubeUrl.split('v=')[1]?.split('&')[0]
+  if (!videoId) {
+    console.error('Invalid YouTube URL:', youtubeUrl)
+    return ''
+  }
   // Use youtube-nocookie.com to prevent cookies and tracking
   // Parameters: no ads, no related videos, minimal branding, no info cards
-  return `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&showinfo=0&controls=1&fs=1&cc_load_policy=0&iv_load_policy=3&autohide=0&playsinline=1`
+  const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&showinfo=0&controls=1&fs=1&cc_load_policy=0&iv_load_policy=3&autohide=0&playsinline=1`
+  console.log('YouTube embed URL:', embedUrl)
+  return embedUrl
 })
 
 const swiperInstance = ref(null)
