@@ -7,8 +7,8 @@
          style="background-image: url('data:image/svg+xml,%3Csvg width=\'120\' height=\'120\' viewBox=\'0 0 120 120\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.01\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'1\'/%3E%3Ccircle cx=\'90\' cy=\'30\' r=\'1\'/%3E%3Ccircle cx=\'30\' cy=\'90\' r=\'1\'/%3E%3Ccircle cx=\'90\' cy=\'90\' r=\'1\'/%3E%3Ccircle cx=\'60\' cy=\'60\' r=\'1\'/%3E%3C/g%3E%3C/svg%3E');" />
 
     <!-- Side glows -->
-    <div class="absolute top-1/2 left-0 w-48 h-48 bg-purple-500/12 rounded-full blur-[80px] -translate-y-1/2 animate-smooth-flow" style="animation-duration: 20s;" />
-    <div class="absolute top-1/2 right-0 w-48 h-48 bg-green-500/12 rounded-full blur-[80px] -translate-y-1/2 animate-smooth-flow" style="animation-duration: 25s; animation-delay: 5s;" />
+    <div class="absolute top-1/2 left-0 w-48 h-48 bg-purple-500/6 rounded-full blur-[80px] -translate-y-1/2 animate-smooth-flow" style="animation-duration: 20s;" />
+    <div class="absolute top-1/2 right-0 w-48 h-48 bg-green-500/6 rounded-full blur-[80px] -translate-y-1/2 animate-smooth-flow" style="animation-duration: 25s; animation-delay: 5s;" />
 
     <div class="container mx-auto px-4 sm:px-6 relative z-10">
       <div class="text-center mb-12 sm:mb-16 lg:mb-20">

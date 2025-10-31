@@ -1,24 +1,32 @@
 <template>
-  <footer class="relative bg-black border-t border-gray-800/50">
+  <footer class="relative min-h-[calc(100vh-64px)] min-h-[calc(100dvh-64px)] bg-black border-t border-gray-800/50 overflow-x-hidden py-3 sm:py-4 md:py-6 lg:py-8 flex flex-col footer-section-content">
     <!-- Enhanced background pattern -->
     <div 
       class="absolute inset-0 opacity-10"
-      :style="{
-        backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255, 255, 255, 0.02) 2px, rgba(255, 255, 255, 0.02) 4px)'
-      }"
+      style="background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 2px,
+        rgba(255, 255, 255, 0.02) 2px,
+        rgba(255, 255, 255, 0.02) 4px
+      );"
     />
     
     <!-- Additional subtle pattern -->
     <div 
       class="absolute inset-0 opacity-5"
-      :style="{
-        backgroundImage: 'repeating-linear-gradient(-45deg, transparent, transparent 4px, rgba(57, 255, 20, 0.01) 4px, rgba(57, 255, 20, 0.01) 8px)'
-      }"
+      style="background-image: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 4px,
+        rgba(57, 255, 20, 0.01) 4px,
+        rgba(57, 255, 20, 0.01) 8px
+      );"
     />
 
     <!-- Subtle atmospheric effects -->
-    <div class="absolute top-0 left-1/4 w-96 h-96 bg-green-500/10 rounded-full blur-[120px]" />
-    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[120px]" />
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-green-500/5 rounded-full blur-[120px]" />
+    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-[120px]" />
 
     <div class="container mx-auto px-6 py-16 relative z-10">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -26,12 +34,12 @@
         <div class="lg:col-span-1">
           <div class="flex items-center gap-3 mb-6">
             <NuxtImg 
-              src="/logo/HakBorrel-LOGOS_white.png"
+              src="/logo/HakBorrel-LOGOS_white 1.png"
               alt="HakBorrel Logo"
               loading="lazy"
               format="webp"
               quality="100"
-              sizes="40px"
+              sizes="8px"
             />
             <h3 class="text-white text-xl font-bold">HAKBORREL</h3>
           </div>

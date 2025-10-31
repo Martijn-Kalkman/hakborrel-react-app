@@ -1,5 +1,5 @@
 <template>
-  <section id="media" class="relative pt-24 pb-12 px-6 overflow-hidden">
+  <section id="media" class="relative min-h-[calc(100vh-64px)] min-h-[calc(100dvh-64px)] px-3 sm:px-4 md:px-6 overflow-x-hidden py-3 sm:py-4 md:py-6 flex flex-col media-section-content">
     <!-- Animated media gallery background -->
     <div class="absolute inset-0 bg-black" />
     <div 
@@ -30,24 +30,79 @@
     <div class="absolute bottom-0 left-0 w-64 h-64 rounded-full blur-[80px] animate-pulse" style="background-color: rgba(147, 51, 234, 0.15); animation-duration: 5s; animation-delay: 1s;" />
 
     <!-- Title Section with Container -->
-    <div class="container mx-auto px-6 relative z-10">
-      <div class="text-center mb-16">
-        <div class="inline-flex items-center gap-3 mb-6">
-          <div class="w-1 h-8 bg-purple-500"></div>
-          <h2 class="text-4xl md:text-6xl font-bold">
-            <span class="text-purple-500">MEDIA</span>
-            <span class="text-white"> GALLERY</span>
+    <div class="container mx-auto px-3 sm:px-4 md:px-6 relative z-10 flex-1 flex flex-col">
+      <div class="text-center mb-3 sm:mb-4 md:mb-6 lg:mb-8 flex-shrink-0">
+        <div class="inline-flex items-center gap-1.5 sm:gap-2 md:gap-3 mb-2 sm:mb-3 md:mb-4">
+          <div class="w-1 h-4 sm:h-6 md:h-8 bg-purple-500"></div>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold">
+            <span class="text-purple-500">CONTENT</span>
           </h2>
-          <div class="w-1 h-8 bg-purple-500"></div>
+          <div class="w-1 h-4 sm:h-6 md:h-8 bg-purple-500"></div>
         </div>
-        <p class="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
+        <p class="text-gray-300 text-xs sm:text-sm md:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed px-2">
           Beleef de energie en sfeer van onze underground bijeenkomsten opnieuw door onze fotogalerij.
         </p>
+      </div>
+
+      <!-- Featured Video -->
+      <div class="max-w-4xl mx-auto mb-4 sm:mb-6 md:mb-8 lg:mb-10 flex-shrink-0">
+        <div class="relative bg-black rounded-lg overflow-hidden border border-purple-500/30 hover:border-purple-500 transition-all duration-300 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] video-player-container group">
+          <!-- Video Player with Overlays -->
+          <div class="relative aspect-video w-full bg-black overflow-hidden">
+            <!-- YouTube Video Embed - Privacy Enhanced (No Cookies) -->
+            <iframe 
+              :src="youtubeEmbedUrl"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              class="absolute inset-0 w-full h-full"
+              style="border: none; z-index: 1;"
+            ></iframe>
+            
+            <!-- Top Left - Video Info Overlay -->
+            <div class="absolute top-3 left-3 z-20 flex items-center gap-2 bg-black/70 backdrop-blur-sm px-3 py-1.5 rounded-lg pointer-events-auto">
+              <div class="w-4 h-4 bg-purple-500 rounded flex-shrink-0"></div>
+              <span class="text-white text-xs sm:text-sm font-semibold">HAKborrel 15.02.2025 @ Groothandelsgebouw Rotterdam</span>
+            </div>
+            
+            <!-- Top Right - Copy Link Button -->
+            <div class="absolute top-3 right-3 z-20 pointer-events-auto">
+              <button 
+                @click="copyVideoLink"
+                class="bg-black/70 backdrop-blur-sm hover:bg-black/90 border border-white/20 hover:border-white/40 rounded-lg px-3 py-2 flex flex-col items-center gap-1 transition-all duration-300 group/copy"
+              >
+                <div class="w-4 h-4 border border-white/60 rounded-sm flex items-center justify-center group-hover/copy:border-white transition-colors">
+                  <div class="w-2 h-2 bg-white/60 rounded-sm group-hover/copy:bg-white transition-colors"></div>
+                </div>
+                <span class="text-white/80 text-[10px] group-hover/copy:text-white transition-colors">Copy link</span>
+              </button>
+            </div>
+            
+            <!-- Center - YouTube Play Button Overlay (shown on hover or as preview) -->
+            <div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div class="bg-red-600 rounded-full p-4 sm:p-6 shadow-2xl">
+                <Icon name="heroicons:play" class="w-8 h-8 sm:w-12 sm:h-12 text-white ml-1" />
+              </div>
+            </div>
+            
+            <!-- Bottom Left - YouTube Branding -->
+            <div class="absolute bottom-3 left-3 z-20 flex items-center gap-2 bg-black/70 backdrop-blur-sm px-3 py-1.5 rounded-lg pointer-events-auto">
+              <span class="text-white/80 text-xs">Watch on</span>
+              <svg class="w-12 h-4" viewBox="0 0 90 20" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#FF0000" d="M27.9727 3.12324C27.6435 1.89323 26.6768 0.926623 25.4468 0.597366C23.2197 2.24288e-07 14.285 0 14.285 0C14.285 0 5.35042 2.24288e-07 3.12323 0.597366C1.89323 0.926623 0.926623 1.89323 0.597366 3.12324C2.24288e-07 5.35042 0 10 0 10C0 10 2.24288e-07 14.6496 0.597366 16.8768C0.926623 18.1068 1.89323 19.0734 3.12323 19.4026C5.35042 20 14.285 20 14.285 20C14.285 20 23.2197 20 25.4468 19.4026C26.6768 19.0734 27.6435 18.1068 27.9727 16.8768C28.5701 14.6496 28.5701 10 28.5701 10C28.5701 10 28.5701 5.35042 27.9727 3.12324Z"/>
+                <path fill="white" d="M11.4253 14.2854L18.8477 10.0004L11.4253 5.71533V14.2854Z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- Full Width Swiper -->
-    <div class="mb-12 -mx-6 sm:-mx-0">
+    <div class="mb-2 sm:mb-3 md:mb-4 lg:mb-6 -mx-3 sm:-mx-4 md:-mx-6 flex-shrink-0">
         <Swiper
           ref="swiperInstance"
           :modules="modules"
@@ -95,8 +150,8 @@
       </div>
 
     <!-- Social Media Icons with Container -->
-    <div class="container mx-auto px-6 relative z-10">
-      <div class="flex justify-center items-center gap-8 mb-8">
+    <div class="container mx-auto px-3 sm:px-4 md:px-6 relative z-10 flex-shrink-0">
+      <div class="flex justify-center items-center gap-4 sm:gap-6 md:gap-8 mb-3 sm:mb-4 md:mb-6">
         <a 
           href="https://youtube.com/@hakborrel" 
           target="_blank" 
@@ -134,9 +189,9 @@
         </a>
       </div>
 
-      <div class="text-center mt-12 mb-12">
+      <div class="text-center mt-3 sm:mt-4 md:mt-6 lg:mt-8 mb-3 sm:mb-4 md:mb-6 lg:mb-8">
         <NuxtLink to="/tickets">
-          <button class="bg-purple-500 hover:bg-purple-500/90 text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl cursor-pointer">
+          <button class="bg-purple-500 hover:bg-purple-500/90 text-white font-semibold px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl cursor-pointer text-xs sm:text-sm md:text-base">
             GET TICKETS
           </button>
         </NuxtLink>
@@ -148,12 +203,23 @@
 <script setup>
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Autoplay } from 'swiper/modules'
-import { ref, onMounted } from 'vue'
+import { ref, computed } from 'vue'
 import 'swiper/css'
 
 const modules = [Autoplay]
 
-// Media Gallery section with photo grid and social links
+// Content section with video and photo grid
+
+// YouTube video URL
+const youtubeUrl = 'https://www.youtube.com/watch?v=SOH49z-S0G0'
+
+// Convert YouTube URL to privacy-enhanced embed URL (no cookies, no ads)
+const youtubeEmbedUrl = computed(() => {
+  const videoId = youtubeUrl.split('v=')[1]?.split('&')[0]
+  // Use youtube-nocookie.com to prevent cookies and tracking
+  // Parameters: no ads, no related videos, minimal branding, no info cards
+  return `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&showinfo=0&controls=1&fs=1&cc_load_policy=0&iv_load_policy=3&autohide=0&playsinline=1`
+})
 
 const swiperInstance = ref(null)
 const isHovered = ref(false)
@@ -169,6 +235,24 @@ const resumeSwiper = () => {
   isHovered.value = false
   if (swiperInstance.value && swiperInstance.value.swiper) {
     swiperInstance.value.swiper.autoplay.start()
+  }
+}
+
+// Copy video link to clipboard
+const copyVideoLink = async () => {
+  try {
+    await navigator.clipboard.writeText(youtubeUrl)
+    // You could add a toast notification here
+    console.log('Video link copied to clipboard!')
+  } catch (err) {
+    console.error('Failed to copy link:', err)
+    // Fallback for older browsers
+    const textArea = document.createElement('textarea')
+    textArea.value = youtubeUrl
+    document.body.appendChild(textArea)
+    textArea.select()
+    document.execCommand('copy')
+    document.body.removeChild(textArea)
   }
 }
 
