@@ -203,10 +203,9 @@ onMounted(() => {
     scroll-snap-align: start !important; /* Enable snap alignment */
     scroll-snap-stop: always !important; /* Always stop at each section */
     scroll-margin-top: 72px; /* Account for fixed navbar */
-    /* Make sections full viewport height */
-    min-height: 100vh;
-    min-height: 100dvh;
-    height: auto; /* Allow content to grow if needed */
+    /* Use only the height needed - no forced 100vh */
+    min-height: auto !important; /* Remove forced min-height */
+    height: auto; /* Allow content to determine height */
     max-height: none; /* Remove max-height restriction */
     /* Remove internal scrolling - let page scroll naturally */
     overflow-y: visible !important;

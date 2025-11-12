@@ -4,13 +4,12 @@
       <div class="flex items-center justify-between">
         <!-- Logo -->
         <NuxtLink to="/" class="flex items-center space-x-4 hover:opacity-80 transition-opacity">
-          <NuxtImg 
+          <img 
             :src="logoPath"
             alt="HakBorrel Logo"
             loading="eager"
-            format="webp"
             fetchpriority="high"
-            sizes="40px"
+            class="w-10 h-10 object-contain"
           />
           
           <span class="text-white font-display text-xl">HAKBORREL</span>
