@@ -21,144 +21,47 @@
       <div class="text-center mb-3 sm:mb-4 md:mb-6 lg:mb-8 flex-shrink-0">
         <div class="inline-flex items-center gap-1.5 sm:gap-2 md:gap-3 mb-2 sm:mb-3 md:mb-4">
           <div class="w-1 h-4 sm:h-6 md:h-8" style="background-color: #00D32C;"></div>
-          <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold">
+          <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-display">
             <span class="text-white">COMMUNITY</span>
             <span style="color: #00D32C;"> RAVES</span>
           </h2>
           <div class="w-1 h-4 sm:h-6 md:h-8" style="background-color: #00D32C;"></div>
         </div>
-        <p class="text-gray-300 text-xs sm:text-sm md:text-base lg:text-lg max-w-3xl mx-auto mb-2 sm:mb-3 md:mb-4 leading-relaxed px-2">
-          Kies je ervaring: Open bijeenkomsten voor iedereen of exclusieve geheime evenementen voor ingewijden.
-        </p>
       </div>
 
-      <!-- Two side-by-side cards -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 md:gap-5 lg:gap-6 flex-1 overflow-y-auto">   
-        <!-- Open Gatherings Card -->
-        <div class="bg-black/60 backdrop-blur-sm border border-green-500/30 rounded-lg p-3 sm:p-4 md:p-5 group hover:border-green-500 hover:shadow-[0_0_30px_rgba(57,255,20,0.3)] transition-all duration-300 h-full flex flex-col">
-          <div class="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-            <div class="rounded-lg flex items-center justify-center p-2 sm:p-2.5 flex-shrink-0 bg-green-500/20">
-              <Icon name="heroicons:globe-alt" class="text-green-500 text-base sm:text-lg md:text-xl" />
+      <!-- Community Raves Card (Single Block - Centered) -->
+      <div class="flex items-center justify-center flex-1 overflow-y-auto">
+        <div class="w-full max-w-2xl bg-black/60 backdrop-blur-sm border border-purple-500/70 rounded-lg p-4 sm:p-6 md:p-8 lg:p-10 group hover:border-purple-500 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all duration-300 flex flex-col">
+          <div class="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-5 md:mb-6">
+            <div class="rounded-lg flex items-center justify-center p-3 sm:p-4 md:p-5 flex-shrink-0 bg-purple-500/20 border border-purple-500/30">
+              <Icon name="heroicons:users" class="text-purple-500 text-lg sm:text-xl md:text-2xl lg:text-3xl" />
             </div>
             <div class="min-w-0">
-              <h3 class="text-green-500 text-sm sm:text-base md:text-lg font-bold">OPEN GATHERINGS</h3>
-              <p class="text-gray-400 text-xs sm:text-sm">Openbare evenementen voor iedereen</p>
+              <h3 class="text-purple-500 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold">COMMUNITY RAVES</h3>
             </div>
           </div>
 
-          <div class="space-y-2 sm:space-y-2.5 mb-4 sm:mb-5 flex-1">
-            <div class="flex items-center gap-2 text-gray-300 text-xs sm:text-sm">
-              <Icon name="heroicons:users" class="text-green-500 h-4 w-4 sm:h-4 sm:w-4 flex-shrink-0" />
-              <span class="min-w-0">Open voor alle hardcore liefhebbers</span>
+          <div class="space-y-3 sm:space-y-3.5 md:space-y-4 mb-5 sm:mb-6 md:mb-8 flex-1">
+            <div class="flex items-center gap-3 text-gray-300 text-sm sm:text-base md:text-lg">
+              <Icon name="heroicons:lock-closed" class="text-purple-500 h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0" />
+              <span class="min-w-0">Invites only</span>
             </div>
-            <div class="flex items-center gap-2 text-gray-300 text-xs sm:text-sm">
-              <Icon name="heroicons:calendar" class="text-green-500 h-4 w-4 sm:h-4 sm:w-4 flex-shrink-0" />
-              <span class="min-w-0">Reguliere maandelijkse evenementen</span>
+            <div class="flex items-center gap-3 text-gray-300 text-sm sm:text-base md:text-lg">
+              <Icon name="heroicons:map-pin" class="text-purple-500 h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0" />
+              <span class="min-w-0">Signature venues</span>
             </div>
-            <div class="flex items-center gap-2 text-gray-300 text-xs sm:text-sm">
-              <Icon name="heroicons:map-pin" class="text-green-500 h-4 w-4 sm:h-4 sm:w-4 flex-shrink-0" />
-              <span class="min-w-0">Openbare locaties en venues</span>
-            </div>
-            <div class="flex items-center gap-2 text-gray-300 text-xs sm:text-sm">
-              <Icon name="heroicons:musical-note" class="text-green-500 h-4 w-4 sm:h-4 sm:w-4 flex-shrink-0" />
-              <span class="min-w-0">Gevariëerde lineup van DJ's</span>
+            <div class="flex items-center gap-3 text-gray-300 text-sm sm:text-base md:text-lg">
+              <Icon name="heroicons:users" class="text-purple-500 h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0" />
+              <span class="min-w-0">Intimate atmosphere</span>
             </div>
           </div>
 
-          <div class="mt-auto space-y-2 sm:space-y-3">
-            <div class="bg-green-500/10 rounded-lg p-2 sm:p-3">
-              <h4 class="font-semibold mb-1 text-xs sm:text-sm text-green-500">Volgend Open Evenement</h4>
-              <p class="text-gray-300 text-xs sm:text-sm mb-1">UNDERGROUND RAVE #23</p>
-              <p class="text-gray-400 text-[10px] sm:text-xs">15 december 2025 • Amsterdam</p>
-            </div>
-            
-            <NuxtLink to="/tickets" class="block w-full">
-              <button class="w-full bg-green-500 hover:bg-green-500/90 text-black font-semibold py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base rounded-md transition-all duration-300 hover:scale-[1.02] cursor-pointer">
-                OPEN EVENEMENTEN BEKIJKEN
+          <div class="mt-auto">
+            <NuxtLink to="/questionnaire" class="block w-full">
+              <button class="w-full bg-purple-600 hover:bg-purple-600/90 text-white font-semibold py-2.5 sm:py-3 md:py-3 text-sm sm:text-base md:text-base rounded-md transition-all duration-300 hover:scale-[1.02] cursor-pointer">
+                JOIN
               </button>
             </NuxtLink>
-          </div>
-        </div>
-
-        <!-- Secret Events Card -->
-        <div class="bg-black/60 backdrop-blur-sm border border-purple-500/30 rounded-lg p-3 sm:p-4 md:p-5 group hover:border-purple-500 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] transition-all duration-300 h-full flex flex-col">
-          <div class="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-            <div class="rounded-lg flex items-center justify-center p-2 sm:p-2.5 flex-shrink-0 bg-purple-500/20">
-              <Icon name="heroicons:lock-closed" class="text-purple-500 text-base sm:text-lg md:text-xl" />
-            </div>
-            <div class="min-w-0">
-              <h3 class="text-purple-500 text-sm sm:text-base md:text-lg font-bold">SECRET EVENTS</h3>
-              <p class="text-gray-400 text-xs sm:text-sm">Exclusieve underground bijeenkomsten</p>
-            </div>
-          </div>
-
-          <div class="space-y-2 sm:space-y-2.5 mb-4 sm:mb-5 flex-1">
-            <div class="flex items-center gap-2 text-gray-300 text-xs sm:text-sm">
-              <Icon name="heroicons:lock-closed" class="text-purple-500 h-4 w-4 sm:h-4 sm:w-4 flex-shrink-0" />
-              <span class="min-w-0">Alleen op uitnodiging community toegang</span>
-            </div>
-            <div class="flex items-center gap-2 text-gray-300 text-xs sm:text-sm">
-              <Icon name="heroicons:map-pin" class="text-purple-500 h-4 w-4 sm:h-4 sm:w-4 flex-shrink-0" />
-              <span class="min-w-0">Verborgen locaties onthuld 24 uur van tevoren</span>
-            </div>
-            <div class="flex items-center gap-2 text-gray-300 text-xs sm:text-sm">
-              <Icon name="heroicons:musical-note" class="text-purple-500 h-4 w-4 sm:h-4 sm:w-4 flex-shrink-0" />
-              <span class="min-w-0">Geheime lineups en speciale gasten</span>
-            </div>
-            <div class="flex items-center gap-2 text-gray-300 text-xs sm:text-sm">
-              <Icon name="heroicons:users" class="text-purple-500 h-4 w-4 sm:h-4 sm:w-4 flex-shrink-0" />
-              <span class="min-w-0">Intieme sfeer, beperkte capaciteit</span>
-            </div>
-          </div>
-
-          <div class="mt-auto space-y-2 sm:space-y-3">
-            <div class="bg-purple-500/10 rounded-lg p-2 sm:p-3">
-              <h4 class="text-purple-500 font-semibold mb-1 text-xs sm:text-sm">Toegang Vereist</h4>
-              <p class="text-gray-300 text-xs sm:text-sm mb-1">Voer je community code in om te ontgrendelen</p>
-              <p class="text-gray-400 text-[10px] sm:text-xs">Woon een evenement bij om je toegangscode te ontvangen</p>
-            </div>
-
-            <div class="space-y-2">
-              <input
-                type="text"
-                placeholder="Voer je code in..."
-                class="bg-black/40 border-purple-500/50 text-white placeholder:text-gray-400 focus:border-purple-500 h-8 sm:h-9 md:h-10 w-full rounded-md border px-2 sm:px-3 py-1.5 sm:py-2 text-xs sm:text-sm transition-colors outline-none"
-              />
-
-              <button class="w-full bg-purple-500 hover:bg-purple-500/90 text-white font-semibold py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base rounded-md transition-all duration-300 hover:scale-[1.02] cursor-pointer">
-                GEHEIME TOEGANG ONTSLUITEN
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Additional info -->
-      <div class="mt-4 sm:mt-6 md:mt-8 text-center flex-shrink-0">
-        <div class="bg-black/60 backdrop-blur-sm border border-gray-700/50 rounded-lg p-3 sm:p-4 md:p-4 lg:p-4 max-w-4xl mx-auto">
-          <h4 class="text-white text-sm sm:text-base md:text-sm lg:text-base font-bold mb-2 sm:mb-3 md:mb-2 lg:mb-3">HOE HET WERKT</h4>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 md:gap-3 lg:gap-4 text-xs sm:text-sm text-gray-300">
-            <div class="text-center">
-              <div class="bg-green-500/20 w-10 h-10 sm:w-12 sm:h-12 md:w-10 md:h-10 lg:w-12 lg:h-12 rounded-lg flex items-center justify-center mx-auto mb-2 sm:mb-3 md:mb-2 lg:mb-3">
-                <span class="text-green-500 font-bold text-sm sm:text-base md:text-sm lg:text-base">1</span>
-              </div>
-              <h5 class="font-semibold mb-1 sm:mb-2 md:mb-1 lg:mb-2 text-xs sm:text-sm md:text-xs lg:text-sm">Woon Open Evenementen Bij</h5>
-              <p class="text-[10px] sm:text-xs md:text-[10px] lg:text-xs">Begin met onze openbare bijeenkomsten om de community te ervaren</p>
-            </div>
-            <div class="text-center">
-              <div class="bg-purple-500/20 w-10 h-10 sm:w-12 sm:h-12 md:w-10 md:h-10 lg:w-12 lg:h-12 rounded-lg flex items-center justify-center mx-auto mb-2 sm:mb-3 md:mb-2 lg:mb-3">
-                <span class="text-purple-500 font-bold text-sm sm:text-base md:text-sm lg:text-base">2</span>
-              </div>
-              <h5 class="font-semibold mb-1 sm:mb-2 md:mb-1 lg:mb-2 text-xs sm:text-sm md:text-xs lg:text-sm">Krijg Je Code</h5>
-              <p class="text-[10px] sm:text-xs md:text-[10px] lg:text-xs">Ontvang je exclusieve toegangscode bij het evenement</p>
-            </div>
-            <div class="text-center">
-              <div class="bg-green-500/20 w-10 h-10 sm:w-12 sm:h-12 md:w-10 md:h-10 lg:w-12 lg:h-12 rounded-lg flex items-center justify-center mx-auto mb-2 sm:mb-3 md:mb-2 lg:mb-3">
-                <span class="text-green-500 font-bold text-sm sm:text-base md:text-sm lg:text-base">3</span>
-              </div>
-              <h5 class="font-semibold mb-1 sm:mb-2 md:mb-1 lg:mb-2 text-xs sm:text-sm md:text-xs lg:text-sm">Ontsluit Geheimen</h5>
-              <p class="text-[10px] sm:text-xs md:text-[10px] lg:text-xs">Krijg toegang tot exclusieve evenementen en verborgen locaties</p>
-            </div>
           </div>
         </div>
       </div>

@@ -186,7 +186,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 
 const form = ref({
@@ -231,12 +231,15 @@ const submitForm = async () => {
         additionalInfo: ''
       }
       // Scroll to top
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+      if (typeof window !== 'undefined') {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
     }
   } catch (err) {
     // Ignore aborted requests (shouldn't happen on form submit, but be safe)
-    if (err.name === 'AbortError' || err.message?.includes('aborted') || 
-        err.message?.includes('Premature close')) {
+    const errorObj = err as { name?: string; message?: string }
+    if (errorObj?.name === 'AbortError' || errorObj?.message?.includes('aborted') || 
+        errorObj?.message?.includes('Premature close')) {
       return
     }
     

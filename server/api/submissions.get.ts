@@ -1,18 +1,19 @@
 import { connectToDatabase } from '../utils/db'
 import { QuestionnaireSubmission } from '../models/QuestionnaireSubmission'
+import { isRequestAborted, safeSetHeader, isAbortError, withAbortCheck } from '../utils/request-handler'
 
 export default defineEventHandler(async (event) => {
-  // Check if request was aborted (client disconnected)
-  if (event.node.req.aborted || event.node.req.destroyed) {
-    return // Silently return if request was cancelled
-  }
-
-  try {
-    // Set response headers early to prevent premature close
-    setHeader(event, 'Content-Type', 'application/json')
-    setHeader(event, 'Connection', 'keep-alive')
+  return withAbortCheck(event, async () => {
+    // Set response headers early
+    safeSetHeader(event, 'Content-Type', 'application/json')
+    safeSetHeader(event, 'Connection', 'keep-alive')
     
     await connectToDatabase()
+    
+    // Check if request was aborted before database query
+    if (isRequestAborted(event)) {
+      return null
+    }
     
     // Fetch all submissions, sorted by newest first
     const submissions = await QuestionnaireSubmission.find({})
@@ -20,22 +21,16 @@ export default defineEventHandler(async (event) => {
       .lean()
       .exec()
 
-    // Check again if request was aborted before sending response
-    if (event.node.req.aborted || event.node.req.destroyed) {
-      return
+    // Final check before returning
+    if (isRequestAborted(event)) {
+      return null
     }
 
     return {
       success: true,
       submissions: submissions
     }
-  } catch (error: any) {
-    // Don't log if request was aborted (expected behavior)
-    if (error.code === 'ECONNRESET' || error.code === 'ECONNABORTED' || 
-        error.message?.includes('aborted') || error.message?.includes('Premature close')) {
-      return // Silently ignore aborted requests
-    }
-    
+  }).catch((error: any) => {
     // Handle MongoDB connection errors
     if (error.name === 'MongoServerError' || error.name === 'MongooseError') {
       console.error('MongoDB error in submissions.get:', error.message)
@@ -45,11 +40,16 @@ export default defineEventHandler(async (event) => {
       })
     }
     
+    // Don't throw errors for aborted requests
+    if (isAbortError(error)) {
+      return null
+    }
+    
     console.error('Error in submissions.get:', error)
     throw createError({
       statusCode: 500,
       statusMessage: error.message || 'Failed to fetch submissions'
     })
-  }
+  })
 })
 

@@ -1,73 +1,66 @@
 import { connectToDatabase } from '../utils/db'
 import { QuestionnaireSubmission } from '../models/QuestionnaireSubmission'
+import { validateQuestionnaireForm } from '../../app/utils/validation'
+import { isRequestAborted, safeSetHeader, isAbortError, withAbortCheck } from '../utils/request-handler'
 
 export default defineEventHandler(async (event) => {
-  // Check if request was aborted (client disconnected)
-  if (event.node.req.aborted || event.node.req.destroyed) {
-    return // Silently return if request was cancelled
-  }
-
-  try {
-    // Set response headers early to prevent premature close
-    setHeader(event, 'Content-Type', 'application/json')
-    setHeader(event, 'Connection', 'keep-alive')
+  return withAbortCheck(event, async () => {
+    // Set response headers early
+    safeSetHeader(event, 'Content-Type', 'application/json')
+    safeSetHeader(event, 'Connection', 'keep-alive')
     
-    const body = await readBody(event)
+    const body = await readBody(event).catch((err: any) => {
+      // If reading body fails due to abort, return null
+      if (isAbortError(err)) {
+        return null
+      }
+      throw err
+    })
+    
+    if (body === null || isRequestAborted(event)) {
+      return null
+    }
+    
     await connectToDatabase()
     
-    // Check again if request was aborted after reading body
-    if (event.node.req.aborted || event.node.req.destroyed) {
-      return
+    // Check again if request was aborted after database connection
+    if (isRequestAborted(event)) {
+      return null
     }
 
-    // Validate required fields - Mongoose will also validate based on schema
-    const required = ['firstName', 'lastName', 'email', 'phone', 'age']
-    for (const field of required) {
-      const value = body[field]
-      if (field === 'age') {
-        // Age can be a number
-        if (!value || value === '') {
-          throw createError({
-            statusCode: 400,
-            statusMessage: `Field '${field}' is required`
-          })
-        }
-      } else {
-        // Other fields must be strings
-        if (!value || typeof value !== 'string' || value.trim() === '') {
-          throw createError({
-            statusCode: 400,
-            statusMessage: `Field '${field}' is required`
-          })
-        }
-      }
-    }
-
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(body.email)) {
+    // Validate and sanitize input using validation utility
+    const validation = validateQuestionnaireForm(body)
+    
+    if (!validation.isValid) {
+      // Return first error message (don't expose all validation details)
+      const firstError = Object.values(validation.errors)[0] || 'Invalid form data'
       throw createError({
         statusCode: 400,
-        statusMessage: 'Invalid email format'
+        statusMessage: firstError
       })
     }
 
-    // Create submission document using Mongoose
+    // Use sanitized data to prevent injection attacks
     const submission = new QuestionnaireSubmission({
-      firstName: body.firstName,
-      lastName: body.lastName,
-      email: body.email,
-      phone: body.phone,
-      age: String(body.age),
-      musicPreference: body.musicPreference || '',
-      eventExperience: body.eventExperience || '',
-      communityMember: body.communityMember || '',
-      additionalInfo: body.additionalInfo || '',
+      firstName: validation.sanitized.firstName,
+      lastName: validation.sanitized.lastName,
+      email: validation.sanitized.email,
+      phone: validation.sanitized.phone,
+      age: validation.sanitized.age,
+      musicPreference: validation.sanitized.musicPreference || '',
+      eventExperience: validation.sanitized.eventExperience || '',
+      communityMember: validation.sanitized.communityMember || '',
+      additionalInfo: validation.sanitized.additionalInfo || '',
       submittedAt: new Date()
     })
 
     // Save to database - Mongoose will validate against schema
     const savedSubmission = await submission.save()
+
+    // Final check before returning
+    if (isRequestAborted(event)) {
+      return null
+    }
 
     // Ensure response is sent properly
     setResponseStatus(event, 201)
@@ -76,11 +69,10 @@ export default defineEventHandler(async (event) => {
       id: savedSubmission._id.toString(),
       message: 'Submission received successfully'
     }
-  } catch (error: any) {
-    // Don't log if request was aborted (expected behavior)
-    if (error.code === 'ECONNRESET' || error.code === 'ECONNABORTED' || 
-        error.message?.includes('aborted') || error.message?.includes('Premature close')) {
-      return // Silently ignore aborted requests
+  }).catch((error: any) => {
+    // Don't throw errors for aborted requests
+    if (isAbortError(error)) {
+      return null
     }
     
     // If it's already a Nuxt error, re-throw it
@@ -106,12 +98,12 @@ export default defineEventHandler(async (event) => {
       })
     }
     
-    // Handle other errors
+    // Handle other errors - don't expose internal error details
     console.error('Error in submissions.post:', error)
     throw createError({
       statusCode: 500,
-      statusMessage: error.message || 'Failed to submit questionnaire'
+      statusMessage: 'Failed to submit questionnaire. Please try again later.'
     })
-  }
+  })
 })
 

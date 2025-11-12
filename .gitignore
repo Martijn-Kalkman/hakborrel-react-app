@@ -22,3 +22,10 @@ logs
 .env
 .env.*
 !.env.example
+
+# Large video files
+*.mp4
+*.mov
+*.avi
+*.mkv
+__MACOSX/

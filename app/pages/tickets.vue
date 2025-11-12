@@ -220,10 +220,15 @@
                     From €{{ getMinimumPrice(event) }}
                   </div>
                 </div>
-                <NuxtLink to="/tickets" class="btn-professional w-full text-center text-black font-semibold py-3 group-hover:scale-[1.02] cursor-pointer flex items-center justify-center gap-2">
-                  VIEW TICKETS
+                <a 
+                  :href="event.ticketUrl || 'https://sales.ticketing.cm.com/HAKborrelRiversideEdition'" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="btn-professional w-full text-center text-black font-semibold py-3 group-hover:scale-[1.02] cursor-pointer flex items-center justify-center gap-2"
+                >
+                  GET TICKETS
                   <Icon name="heroicons:arrow-right" size="16px" />
-                </NuxtLink>
+                </a>
               </div>
             </div>
           </div>
@@ -248,6 +253,7 @@ const events = ref([
     image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop&crop=center",
     description: "Experience the raw energy of underground hardcore with the best DJs in the scene.",
     status: 'selling-fast',
+    ticketUrl: "https://sales.ticketing.cm.com/HAKborrelRiversideEdition",
     ticketTypes: [
       { name: "Early Bird", price: 25, available: 50 },
       { name: "Regular", price: 35, available: 200 },
@@ -263,6 +269,7 @@ const events = ref([
     image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&h=400&fit=crop&crop=center",
     description: "Our biggest event of the year with multiple stages and world-class artists.",
     status: 'upcoming',
+    ticketUrl: "https://sales.ticketing.cm.com/HAKborrelRiversideEdition",
     ticketTypes: [
       { name: "Day Pass", price: 45, available: 500 },
       { name: "Weekend Pass", price: 85, available: 300 },
@@ -278,6 +285,7 @@ const events = ref([
     image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=400&fit=crop&crop=center",
     description: "Exclusive underground event in a hidden location. Limited capacity.",
     status: 'sold-out',
+    ticketUrl: "https://sales.ticketing.cm.com/HAKborrelRiversideEdition",
     ticketTypes: [
       { name: "Standard", price: 40, available: 0 },
       { name: "Exclusive", price: 75, available: 0 }

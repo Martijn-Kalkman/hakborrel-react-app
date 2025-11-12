@@ -44,6 +44,9 @@
       <div class="scroll-snap-section">
         <Footer />
       </div>
+      
+      <!-- Mobile Scroll Buttons -->
+      <MobileScrollButtons />
     </div>
   </div>
 </template>

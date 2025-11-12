@@ -7,30 +7,64 @@
     <Navigation />
 
     <div class="container mx-auto px-4 sm:px-6 relative z-10">
-      <!-- Header -->
-      <div class="text-center mb-12">
-        <h1 class="text-4xl md:text-6xl font-display">
-          <span class="text-white">ADMIN</span>
-          <span class="text-gradient-primary"> PANEL</span>
-        </h1>
-        <p class="text-gray-300 text-lg font-body mt-4">
-          Questionnaire Submissions
-        </p>
-        <div class="mt-6">
-          <button 
-            @click="exportToCSV"
-            :disabled="submissions.length === 0 || loading"
-            class="btn-professional disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center gap-2"
-          >
-            <Icon name="heroicons:arrow-down-tray" size="20px" />
-            Export to CSV
-          </button>
+      <!-- Authentication Form -->
+      <div v-if="!isAuthenticated" class="max-w-md mx-auto mt-20">
+        <div class="card-professional p-8">
+          <h2 class="text-2xl font-heading text-gradient-primary mb-6 text-center">Admin Authenticatie</h2>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-white font-heading mb-2">Admin Token</label>
+              <input 
+                v-model="adminToken"
+                type="password"
+                @keyup.enter="authenticate"
+                class="w-full bg-black/50 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-green-500/50 transition-colors"
+                placeholder="Voer admin token in"
+              />
+            </div>
+            <p v-if="authError" class="text-red-500 text-sm">{{ authError }}</p>
+            <button 
+              @click="authenticate"
+              class="btn-professional w-full"
+            >
+              Inloggen
+            </button>
+          </div>
         </div>
       </div>
 
+      <!-- Admin Panel Content -->
+      <div v-else>
+        <!-- Header -->
+        <div class="text-center mb-12">
+          <h1 class="text-4xl md:text-6xl font-display">
+            <span class="text-white">ADMIN</span>
+            <span class="text-gradient-primary"> PANEL</span>
+          </h1>
+          <p class="text-gray-300 text-lg font-body mt-4">
+            Questionnaire Submissions
+          </p>
+          <div class="mt-6 flex justify-center gap-4">
+            <button 
+              @click="exportToCSV"
+              :disabled="submissions.length === 0 || loading"
+              class="btn-professional disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center gap-2"
+            >
+              <Icon name="heroicons:arrow-down-tray" size="20px" />
+              Export to CSV
+            </button>
+            <button 
+              @click="logout"
+              class="btn-professional inline-flex items-center gap-2 bg-red-500/20 border-red-500/50 hover:bg-red-500/30"
+            >
+              <Icon name="heroicons:arrow-right-on-rectangle" size="20px" />
+              Uitloggen
+            </button>
+          </div>
+        </div>
 
-      <!-- Stats Cards -->
-      <div v-if="stats" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <!-- Stats Cards -->
+      <div v-if="stats && isAuthenticated" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
         <div class="card-professional p-6 text-center">
           <p class="text-4xl font-bold text-gradient-primary mb-2">{{ stats.total }}</p>
           <p class="text-gray-400 font-body">Total Submissions</p>
@@ -46,7 +80,7 @@
       </div>
 
       <!-- Submissions List -->
-      <div class="card-professional p-6">
+      <div v-if="isAuthenticated" class="card-professional p-6">
         <div v-if="loading" class="text-center py-12">
           <p class="text-gray-400 font-body">Loading submissions...</p>
         </div>
@@ -94,101 +128,145 @@
         </div>
       </div>
 
-      <!-- Submission Details Modal -->
-      <Transition name="fade">
-        <div 
-          v-if="selectedSubmission" 
-          class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-8 z-50"
-          @click="selectedSubmission = null"
-        >
-          <div class="card-professional max-w-2xl w-full max-h-[90vh] overflow-y-auto p-8" @click.stop>
-            <div class="flex justify-between items-center mb-8">
-              <h2 class="text-gradient-primary text-2xl font-heading">Submission Details</h2>
-              <button 
-                @click="selectedSubmission = null"
-                class="text-gray-400 hover:text-white transition-colors"
-              >
-                <Icon name="heroicons:x-mark" size="24px" />
-              </button>
-            </div>
-
-            <div class="space-y-8">
-              <!-- Personal Info -->
-              <div>
-                <h3 class="text-white font-heading mb-4">Personal Information</h3>
-                <div class="grid grid-cols-2 gap-4">
-                  <div>
-                    <p class="text-gray-400 font-body text-sm mb-1">First Name</p>
-                    <p class="text-white font-body">{{ selectedSubmission.firstName }}</p>
-                  </div>
-                  <div>
-                    <p class="text-gray-400 font-body text-sm mb-1">Last Name</p>
-                    <p class="text-white font-body">{{ selectedSubmission.lastName }}</p>
-                  </div>
-                  <div>
-                    <p class="text-gray-400 font-body text-sm mb-1">Age</p>
-                    <p class="text-white font-body">{{ selectedSubmission.age }}</p>
-                  </div>
-                </div>
+        <!-- Submission Details Modal -->
+        <Transition name="fade">
+          <div 
+            v-if="selectedSubmission" 
+            class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-8 z-50"
+            @click="selectedSubmission = null"
+          >
+            <div class="card-professional max-w-2xl w-full max-h-[90vh] overflow-y-auto p-8" @click.stop>
+              <div class="flex justify-between items-center mb-8">
+                <h2 class="text-gradient-primary text-2xl font-heading">Submission Details</h2>
+                <button 
+                  @click="selectedSubmission = null"
+                  class="text-gray-400 hover:text-white transition-colors"
+                >
+                  <Icon name="heroicons:x-mark" size="24px" />
+                </button>
               </div>
 
-              <!-- Contact Info -->
-              <div>
-                <h3 class="text-white font-heading mb-4">Contact Information</h3>
-                <div class="space-y-2">
-                  <div>
-                    <p class="text-gray-400 font-body text-sm mb-1">Email</p>
-                    <p class="text-white font-body">{{ selectedSubmission.email }}</p>
-                  </div>
-                  <div>
-                    <p class="text-gray-400 font-body text-sm mb-1">Phone</p>
-                    <p class="text-white font-body">{{ selectedSubmission.phone }}</p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Background Info -->
-              <div>
-                <h3 class="text-white font-heading mb-4">Background Information</h3>
-                <div class="space-y-3">
-                  <div>
-                    <p class="text-gray-400 font-body text-sm mb-1">Music Preference</p>
-                    <p class="text-white font-body">{{ selectedSubmission.musicPreference || 'N/A' }}</p>
-                  </div>
-                  <div>
-                    <p class="text-gray-400 font-body text-sm mb-1">Event Experience</p>
-                    <p class="text-white font-body">{{ selectedSubmission.eventExperience || 'N/A' }}</p>
-                  </div>
-                  <div>
-                    <p class="text-gray-400 font-body text-sm mb-1">Community Member</p>
-                    <p class="text-white font-body">{{ selectedSubmission.communityMember || 'N/A' }}</p>
-                  </div>
-                  <div v-if="selectedSubmission.additionalInfo">
-                    <p class="text-gray-400 font-body text-sm mb-1">Additional Info</p>
-                    <p class="text-white font-body">{{ selectedSubmission.additionalInfo }}</p>
+              <div class="space-y-8">
+                <!-- Personal Info -->
+                <div>
+                  <h3 class="text-white font-heading mb-4">Personal Information</h3>
+                  <div class="grid grid-cols-2 gap-4">
+                    <div>
+                      <p class="text-gray-400 font-body text-sm mb-1">First Name</p>
+                      <p class="text-white font-body">{{ selectedSubmission.firstName }}</p>
+                    </div>
+                    <div>
+                      <p class="text-gray-400 font-body text-sm mb-1">Last Name</p>
+                      <p class="text-white font-body">{{ selectedSubmission.lastName }}</p>
+                    </div>
+                    <div>
+                      <p class="text-gray-400 font-body text-sm mb-1">Age</p>
+                      <p class="text-white font-body">{{ selectedSubmission.age }}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <!-- Timestamp -->
-              <div>
-                <p class="text-gray-400 font-body text-sm">Submitted on: {{ formatDateTime(selectedSubmission.submittedAt) }}</p>
+                <!-- Contact Info -->
+                <div>
+                  <h3 class="text-white font-heading mb-4">Contact Information</h3>
+                  <div class="space-y-2">
+                    <div>
+                      <p class="text-gray-400 font-body text-sm mb-1">Email</p>
+                      <p class="text-white font-body">{{ selectedSubmission.email }}</p>
+                    </div>
+                    <div>
+                      <p class="text-gray-400 font-body text-sm mb-1">Phone</p>
+                      <p class="text-white font-body">{{ selectedSubmission.phone }}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Background Info -->
+                <div>
+                  <h3 class="text-white font-heading mb-4">Background Information</h3>
+                  <div class="space-y-3">
+                    <div>
+                      <p class="text-gray-400 font-body text-sm mb-1">Music Preference</p>
+                      <p class="text-white font-body">{{ selectedSubmission.musicPreference || 'N/A' }}</p>
+                    </div>
+                    <div>
+                      <p class="text-gray-400 font-body text-sm mb-1">Event Experience</p>
+                      <p class="text-white font-body">{{ selectedSubmission.eventExperience || 'N/A' }}</p>
+                    </div>
+                    <div>
+                      <p class="text-gray-400 font-body text-sm mb-1">Community Member</p>
+                      <p class="text-white font-body">{{ selectedSubmission.communityMember || 'N/A' }}</p>
+                    </div>
+                    <div v-if="selectedSubmission.additionalInfo">
+                      <p class="text-gray-400 font-body text-sm mb-1">Additional Info</p>
+                      <p class="text-white font-body">{{ selectedSubmission.additionalInfo }}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Timestamp -->
+                <div>
+                  <p class="text-gray-400 font-body text-sm">Submitted on: {{ formatDateTime(selectedSubmission.submittedAt) }}</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </Transition>
+        </Transition>
+      </div>
     </div>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
+
+// Admin authentication
+const adminToken = ref('')
+const isAuthenticated = ref(false)
+const authError = ref('')
 
 const submissions = ref([])
 const selectedSubmission = ref(null)
 const loading = ref(true)
 const abortController = ref(null)
+
+// Simple authentication check
+const authenticate = () => {
+  if (!adminToken.value.trim()) {
+    authError.value = 'Voer een admin token in'
+    return
+  }
+  
+  // Store token in sessionStorage for this session
+  if (typeof window !== 'undefined') {
+    sessionStorage.setItem('admin_token', adminToken.value)
+  }
+  
+  isAuthenticated.value = true
+  authError.value = ''
+  loadSubmissions()
+}
+
+// Logout function
+const logout = () => {
+  isAuthenticated.value = false
+  adminToken.value = ''
+  if (typeof window !== 'undefined') {
+    sessionStorage.removeItem('admin_token')
+  }
+}
+
+// Check if already authenticated
+onMounted(() => {
+  if (typeof window !== 'undefined') {
+    const storedToken = sessionStorage.getItem('admin_token')
+    if (storedToken) {
+      adminToken.value = storedToken
+      isAuthenticated.value = true
+      loadSubmissions()
+    }
+  }
+})
 
 const stats = computed(() => {
   if (!submissions.value.length) return null
@@ -228,6 +306,10 @@ const formatDateTime = (dateString) => {
 }
 
 const loadSubmissions = async () => {
+  if (!isAuthenticated.value) {
+    return
+  }
+  
   // Cancel any existing request
   if (abortController.value) {
     abortController.value.abort()
@@ -238,10 +320,17 @@ const loadSubmissions = async () => {
   
   try {
     loading.value = true
+    
+    // Get token from sessionStorage or use current token
+    const token = typeof window !== 'undefined' 
+      ? sessionStorage.getItem('admin_token') || adminToken.value 
+      : adminToken.value
+    
     const response = await $fetch('/api/submissions', {
       signal: abortController.value.signal,
-      // Prevent duplicate requests
-      key: 'submissions',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
       // Retry configuration
       retry: 0
     })
@@ -249,16 +338,27 @@ const loadSubmissions = async () => {
     if (response && response.submissions) {
       submissions.value = response.submissions
     }
-  } catch (error) {
+  } catch (err) {
     // Ignore aborted requests (expected when component unmounts)
-    if (error.name === 'AbortError' || error.message?.includes('aborted') || 
-        error.message?.includes('cancelled')) {
+    const errorObj = err as { name?: string; message?: string; statusCode?: number }
+    if (errorObj?.name === 'AbortError' || errorObj?.message?.includes('aborted') || 
+        errorObj?.message?.includes('cancelled')) {
+      return
+    }
+    
+    // Handle authentication errors
+    if (errorObj?.statusCode === 401) {
+      isAuthenticated.value = false
+      authError.value = 'Ongeldige token. Probeer opnieuw.'
+      if (typeof window !== 'undefined') {
+        sessionStorage.removeItem('admin_token')
+      }
       return
     }
     
     // Only log actual errors, not cancellations
-    if (!error.message?.includes('Premature close')) {
-      console.error('Failed to load submissions:', error)
+    if (!errorObj?.message?.includes('Premature close')) {
+      console.error('Failed to load submissions:', err)
     }
   } finally {
     loading.value = false
@@ -331,9 +431,7 @@ const escapeCSV = (value) => {
   return stringValue
 }
 
-onMounted(() => {
-  loadSubmissions()
-})
+// Removed - authentication check is now in onMounted above
 
 onBeforeUnmount(() => {
   // Cancel any pending requests when component unmounts

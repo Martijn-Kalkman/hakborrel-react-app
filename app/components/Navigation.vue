@@ -19,56 +19,61 @@
         <!-- Navigation Links -->
         <div class="hidden lg:flex items-center space-x-8">
           <NuxtLink to="/#home" :class="[
-            'transition-colors font-body text-sm uppercase tracking-wide',
+            'transition-colors font-display text-sm uppercase tracking-wide',
             activeSection === 'home' ? 'text-green-500 font-semibold' : 'text-gray-300 hover:text-white'
           ]">
             HOME
           </NuxtLink>
           <NuxtLink to="/#events" :class="[
-            'transition-colors font-body text-sm uppercase tracking-wide',
+            'transition-colors font-display text-sm uppercase tracking-wide',
             activeSection === 'events' ? 'text-green-500 font-semibold' : 'text-gray-300 hover:text-white'
           ]">
             EVENTS
           </NuxtLink>
           <NuxtLink to="/#community" :class="[
-            'transition-colors font-body text-sm uppercase tracking-wide',
+            'transition-colors font-display text-sm uppercase tracking-wide',
             activeSection === 'community' ? 'text-green-500 font-semibold' : 'text-gray-300 hover:text-white'
           ]">
             COMMUNITY
           </NuxtLink>
           <NuxtLink to="/#story" :class="[
-            'transition-colors font-body text-sm uppercase tracking-wide',
+            'transition-colors font-display text-sm uppercase tracking-wide',
             activeSection === 'story' ? 'text-green-500 font-semibold' : 'text-gray-300 hover:text-white'
           ]">
             STORY
           </NuxtLink>
           <NuxtLink to="/#media" :class="[
-            'transition-colors font-body text-sm uppercase tracking-wide',
+            'transition-colors font-display text-sm uppercase tracking-wide',
             activeSection === 'media' ? 'text-green-500 font-semibold' : 'text-gray-300 hover:text-white'
           ]">
             CONTENT
           </NuxtLink>
           <NuxtLink to="/tickets" :class="[
-            'transition-colors font-body text-sm uppercase tracking-wide',
+            'transition-colors font-display text-sm uppercase tracking-wide',
             $route.path === '/tickets' ? 'text-green-500 font-semibold' : 'text-gray-300 hover:text-white'
           ]">
             TICKETS
           </NuxtLink>
-          <NuxtLink to="/secret" class="text-purple-400 hover:text-purple-300 transition-colors font-body text-sm uppercase tracking-wide border-l border-purple-500/30 pl-8">
-            SECRET CHAPTERS
+          <NuxtLink to="/secret" class="text-purple-500 hover:text-purple-400 transition-colors font-display text-sm uppercase tracking-wide border-l border-purple-500/50 pl-8 drop-shadow-[0_0_8px_rgba(168,85,247,0.6)] hover:drop-shadow-[0_0_12px_rgba(168,85,247,0.8)]">
+            COMMUNITY RAVES
           </NuxtLink>
         </div>
 
         <!-- Right Side Actions -->
         <div class="hidden lg:flex items-center space-x-4">
-          <!-- Newsletter Button -->
-          <button class="bg-green-500 text-black px-3 py-1.5 rounded-lg text-md font-regular hover:cursor-pointer hover:bg-green-600 transition-colors">
-            NIEUWSBRIEF
+          <!-- Language Toggle Button -->
+          <button @click="toggleLanguage" class="bg-transparent border border-white/30 text-white px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-green-500/20 hover:border-green-500/50 hover:text-green-500 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_15px_rgba(57,255,20,0.3)] min-h-[44px] cursor-pointer">
+            {{ currentLanguage === 'nl' ? 'ENG' : 'NL' }}
           </button>
         </div>
 
         <!-- Mobile Menu Button -->
-        <button class="lg:hidden text-white transition-transform duration-300 hover:scale-110" @click="toggleMobileMenu">
+        <button 
+          class="lg:hidden text-white transition-transform duration-300 hover:scale-110" 
+          @click="toggleMobileMenu"
+          :aria-label="isMobileMenuOpen ? 'Sluit menu' : 'Open menu'"
+          :aria-expanded="isMobileMenuOpen"
+        >
           <Icon name="heroicons:bars-3" size="24px" v-if="!isMobileMenuOpen" />
           <Icon name="heroicons:x-mark" size="24px" v-else />
         </button>
@@ -79,49 +84,49 @@
         <div v-if="isMobileMenuOpen" class="lg:hidden mt-4 pb-4 border-t border-white/10 overflow-hidden">
           <div class="flex flex-col space-y-4 pt-4">
             <NuxtLink to="/#home" @click="closeMobileMenu" :class="[
-              'transition-colors font-body text-sm uppercase tracking-wide py-2',
+              'transition-colors font-display text-sm uppercase tracking-wide py-2',
               activeSection === 'home' ? 'text-green-500 font-semibold' : 'text-gray-300 hover:text-white'
             ]">
               HOME
             </NuxtLink>
             <NuxtLink to="/#events" @click="closeMobileMenu" :class="[
-              'transition-colors font-body text-sm uppercase tracking-wide py-2',
+              'transition-colors font-display text-sm uppercase tracking-wide py-2',
               activeSection === 'events' ? 'text-green-500 font-semibold' : 'text-gray-300 hover:text-white'
             ]">
               EVENTS
             </NuxtLink>
             <NuxtLink to="/#community" @click="closeMobileMenu" :class="[
-              'transition-colors font-body text-sm uppercase tracking-wide py-2',
+              'transition-colors font-display text-sm uppercase tracking-wide py-2',
               activeSection === 'community' ? 'text-green-500 font-semibold' : 'text-gray-300 hover:text-white'
             ]">
               COMMUNITY
             </NuxtLink>
             <NuxtLink to="/#story" @click="closeMobileMenu" :class="[
-              'transition-colors font-body text-sm uppercase tracking-wide py-2',
+              'transition-colors font-display text-sm uppercase tracking-wide py-2',
               activeSection === 'story' ? 'text-green-500 font-semibold' : 'text-gray-300 hover:text-white'
             ]">
               STORY
             </NuxtLink>
             <NuxtLink to="/#media" @click="closeMobileMenu" :class="[
-              'transition-colors font-body text-sm uppercase tracking-wide py-2',
+              'transition-colors font-display text-sm uppercase tracking-wide py-2',
               activeSection === 'media' ? 'text-green-500 font-semibold' : 'text-gray-300 hover:text-white'
             ]">
               CONTENT
             </NuxtLink>
             <NuxtLink to="/tickets" @click="closeMobileMenu" :class="[
-              'transition-colors font-body text-sm uppercase tracking-wide py-2',
+              'transition-colors font-display text-sm uppercase tracking-wide py-2',
               $route.path === '/tickets' ? 'text-green-500 font-semibold' : 'text-gray-300 hover:text-white'
             ]">
               TICKETS
             </NuxtLink>
-            <NuxtLink to="/secret" @click="closeMobileMenu" class="text-purple-400 hover:text-purple-300 transition-colors font-body text-sm uppercase tracking-wide py-2 border-t border-purple-500/30 pt-4 mt-4">
-              SECRET CHAPTERS
+            <NuxtLink to="/secret" @click="closeMobileMenu" class="text-purple-500 hover:text-purple-400 transition-colors font-display text-sm uppercase tracking-wide py-2 border-t border-purple-500/50 pt-4 mt-4 drop-shadow-[0_0_8px_rgba(168,85,247,0.6)] hover:drop-shadow-[0_0_12px_rgba(168,85,247,0.8)]">
+              COMMUNITY RAVES
             </NuxtLink>
             
             <!-- Mobile Buttons -->
             <div class="mt-4">
-              <button class="w-full bg-green-500 text-black px-4 py-2 rounded-lg text-base font-medium hover:bg-green-600 transition-colors">
-                NIEUWSBRIEF
+              <button @click="toggleLanguage" class="w-full bg-transparent border border-white/30 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-500/20 hover:border-green-500/50 hover:text-green-500 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_15px_rgba(57,255,20,0.3)] min-h-[44px] cursor-pointer">
+                {{ currentLanguage === 'nl' ? 'ENG' : 'NL' }}
               </button>
             </div>
           </div>
@@ -132,12 +137,19 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 
-const logoPath = '/logo/HakBorrel-LOGOS_white 1.png'
+// Use computed to ensure proper path handling in production
+const logoPath = computed(() => '/logo/HakBorrel-LOGOS_white 1.png')
 
 const isMobileMenuOpen = ref(false)
 const activeSection = ref('home')
+const currentLanguage = ref('nl') // Default to Dutch
+
+const toggleLanguage = () => {
+  currentLanguage.value = currentLanguage.value === 'nl' ? 'en' : 'nl'
+  // TODO: Implement actual language switching logic when i18n is set up
+}
 
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value

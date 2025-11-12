@@ -34,29 +34,26 @@
       <div class="text-center mb-3 sm:mb-4 md:mb-6 lg:mb-8 flex-shrink-0">
         <div class="inline-flex items-center gap-1.5 sm:gap-2 md:gap-3 mb-2 sm:mb-3 md:mb-4">
           <div class="w-1 h-4 sm:h-6 md:h-8 bg-purple-500"></div>
-          <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold">
+          <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-display">
             <span class="text-purple-500">CONTENT</span>
           </h2>
           <div class="w-1 h-4 sm:h-6 md:h-8 bg-purple-500"></div>
         </div>
-        <p class="text-gray-300 text-xs sm:text-sm md:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed px-2">
-          Beleef de energie en sfeer van onze underground bijeenkomsten opnieuw.
-        </p>
       </div>
 
       <!-- Content Selector/Tabs -->
       <div class="flex justify-center mb-4 sm:mb-6 md:mb-8 flex-shrink-0">
-        <div class="bg-black/40 backdrop-blur-sm border border-purple-500/30 rounded-lg p-1 flex gap-1">
+        <div class="bg-black/40 backdrop-blur-sm border border-purple-500/60 rounded-lg p-1 flex gap-1">
           <button
             @click="showingVideo = true"
             :class="[
               'px-6 sm:px-8 md:px-10 py-2 sm:py-3 rounded-md transition-all duration-300 font-semibold text-xs sm:text-sm md:text-base cursor-pointer',
               showingVideo 
-                ? 'bg-purple-500 text-white shadow-lg' 
+                ? 'bg-purple-600 text-white shadow-lg' 
                 : 'text-gray-400 hover:text-gray-300'
             ]"
           >
-            FEATURED VIDEO
+            VIDEOS
           </button>
           <button
             @click="showingVideo = false"
@@ -64,17 +61,17 @@
               'px-6 sm:px-8 md:px-10 py-2 sm:py-3 rounded-md transition-all duration-300 font-semibold text-xs sm:text-sm md:text-base cursor-pointer',
               showingVideo 
                 ? 'text-gray-400 hover:text-gray-300' 
-                : 'bg-purple-500 text-white shadow-lg'
+                : 'bg-purple-600 text-white shadow-lg'
             ]"
           >
-            FOTO GALERIJ
+            PHOTO GALLERY
           </button>
         </div>
       </div>
 
       <!-- Featured Video -->
-      <div v-if="showingVideo" class="max-w-4xl mx-auto mb-4 sm:mb-6 md:mb-8 lg:mb-10 flex-shrink-0 w-full">
-        <div class="relative bg-black rounded-lg overflow-hidden border border-purple-500/30 hover:border-purple-500 transition-all duration-300 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] video-player-container group">
+      <div v-if="showingVideo" class="max-w-3xl mx-auto mb-4 sm:mb-6 md:mb-8 lg:mb-10 flex-shrink-0 w-full">
+        <div class="relative bg-black rounded-lg overflow-hidden border border-purple-500/60 hover:border-purple-500 transition-all duration-300 hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] video-player-container group">
           <!-- Video Player with Overlays -->
           <div class="relative w-full bg-black" style="position: relative; padding-bottom: 56.25%; height: 0; width: 100%;">
             <!-- YouTube Video Embed - Privacy Enhanced (No Cookies) -->
@@ -82,7 +79,6 @@
               :src="youtubeEmbedUrl"
               title="YouTube video player"
               frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
@@ -275,7 +271,7 @@
           class="group flex flex-col items-center gap-3 hover:scale-110 transition-transform duration-300"
         >
           <div class="w-16 h-16 bg-red-600/20 rounded-full flex items-center justify-center border border-red-600/30 group-hover:bg-red-600/30 group-hover:border-red-600/50 transition-all duration-300">
-            <Icon name="heroicons:play" class="h-8 w-8 text-red-500 group-hover:text-red-400" />
+            <Icon name="mdi:youtube" class="h-8 w-8 text-red-500 group-hover:text-red-400" />
           </div>
           <span class="text-gray-400 text-sm group-hover:text-white transition-colors">YouTube</span>
         </a>
@@ -287,7 +283,7 @@
           class="group flex flex-col items-center gap-3 hover:scale-110 transition-transform duration-300"
         >
           <div class="w-16 h-16 bg-black/20 rounded-full flex items-center justify-center border border-gray-600/30 group-hover:bg-black/30 group-hover:border-gray-500/50 transition-all duration-300">
-            <Icon name="heroicons:musical-note" class="h-8 w-8 text-white group-hover:text-gray-300" />
+            <Icon name="simple-icons:tiktok" class="h-8 w-8 text-white group-hover:text-gray-300" />
           </div>
           <span class="text-gray-400 text-sm group-hover:text-white transition-colors">TikTok</span>
         </a>
@@ -299,7 +295,7 @@
           class="group flex flex-col items-center gap-3 hover:scale-110 transition-transform duration-300"
         >
           <div class="w-16 h-16 bg-gradient-to-br from-purple-600/20 to-pink-600/20 rounded-full flex items-center justify-center border border-purple-600/30 group-hover:from-purple-600/30 group-hover:to-pink-600/30 group-hover:border-purple-500/50 transition-all duration-300">
-            <Icon name="heroicons:camera" class="h-8 w-8 text-purple-400 group-hover:text-purple-300" />
+            <Icon name="mdi:instagram" class="h-8 w-8 text-purple-400 group-hover:text-purple-300" />
           </div>
           <span class="text-gray-400 text-sm group-hover:text-white transition-colors">Instagram</span>
         </a>
@@ -436,14 +432,14 @@ const youtubeUrl = 'https://www.youtube.com/watch?v=SOH49z-S0G0'
 const youtubeEmbedUrl = computed(() => {
   const videoId = youtubeUrl.split('v=')[1]?.split('&')[0]
   if (!videoId) {
-    console.error('Invalid YouTube URL:', youtubeUrl)
+    if (process.dev) {
+      console.error('Invalid YouTube URL:', youtubeUrl)
+    }
     return ''
   }
   // Use youtube-nocookie.com to prevent cookies and tracking
   // Parameters: no ads, no related videos, minimal branding, no info cards
-  const embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&showinfo=0&controls=1&fs=1&cc_load_policy=0&iv_load_policy=3&autohide=0&playsinline=1`
-  console.log('YouTube embed URL:', embedUrl)
-  return embedUrl
+  return `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&showinfo=0&controls=1&fs=1&cc_load_policy=0&iv_load_policy=3&autohide=0&playsinline=1`
 })
 
 const swiperInstance = ref(null)
@@ -467,11 +463,12 @@ const resumeSwiper = () => {
 const copyVideoLink = async () => {
   try {
     await navigator.clipboard.writeText(youtubeUrl)
-    // You could add a toast notification here
-    console.log('Video link copied to clipboard!')
+    // Link copied successfully (could add toast notification here)
   } catch (err) {
-    console.error('Failed to copy link:', err)
     // Fallback for older browsers
+    if (process.dev) {
+      console.warn('Clipboard API failed, using fallback:', err)
+    }
     const textArea = document.createElement('textarea')
     textArea.value = youtubeUrl
     document.body.appendChild(textArea)
