@@ -10,6 +10,9 @@
             loading="eager"
             fetchpriority="high"
             class="w-10 h-10 object-contain"
+            style="image-rendering: auto; image-rendering: -webkit-optimize-contrast;"
+            width="40"
+            height="40"
           />
           
           <span class="text-white font-display text-xl">HAKBORREL</span>

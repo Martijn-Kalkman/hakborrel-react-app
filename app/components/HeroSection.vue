@@ -17,14 +17,15 @@
     <div class="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 flex flex-col items-center text-center">
       <!-- Logo and Title -->
       <div class="mb-6 md:mb-8 lg:mb-10 flex items-center justify-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 px-3 md:px-6 flex-shrink-0">
-        <NuxtImg 
+        <img 
           :src="logoPath"
           alt="HakBorrel Logo"
           class="object-contain flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32"
+          style="image-rendering: auto; image-rendering: -webkit-optimize-contrast;"
           loading="eager"
-          format="webp"
           fetchpriority="high"
-          sizes="(max-width: 640px) 64px, (max-width: 768px) 80px, (max-width: 1024px) 96px, 112px, 128px"
+          width="128"
+          height="128"
         />
         <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl 2xl:text-8xl font-display leading-tight flex-shrink-0">
           <span class="text-white">HAKBORREL</span>

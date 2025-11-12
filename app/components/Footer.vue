@@ -21,13 +21,14 @@
         <!-- Brand Section -->
         <div class="lg:col-span-1">
           <div class="flex items-center gap-3 sm:gap-4 mb-6">
-            <NuxtImg 
+            <img 
               :src="logoPath"
               alt="HakBorrel Logo"
               loading="lazy"
-              format="webp" 
               class="object-contain flex-shrink-0 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20"
-              sizes="(max-width: 640px) 48px, (max-width: 768px) 64px, 80px"
+              style="image-rendering: auto; image-rendering: -webkit-optimize-contrast;"
+              width="80"
+              height="80"
             />
             <h3 class="text-white text-xl sm:text-2xl md:text-3xl font-display">HAKBORREL</h3>
           </div>
