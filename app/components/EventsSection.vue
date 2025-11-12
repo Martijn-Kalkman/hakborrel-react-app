@@ -62,7 +62,6 @@
                     style="width: 100%; height: 100%;"
                     loading="lazy"
                     format="webp"
-                    quality="100"
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                   <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
@@ -129,7 +128,7 @@
                   class="object-cover w-full h-full"
                   loading="eager"
                   format="webp"
-                  quality="100"
+                  preset="hero"
                 />
                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
               </div>

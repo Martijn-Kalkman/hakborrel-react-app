@@ -26,7 +26,6 @@
               alt="HakBorrel Logo"
               loading="lazy"
               format="webp" 
-              quality="100"
               class="object-contain flex-shrink-0 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20"
               sizes="(max-width: 640px) 48px, (max-width: 768px) 64px, 80px"
             />
@@ -203,7 +202,7 @@
 import { ref, computed } from 'vue'
 
 // Use computed to ensure proper path handling in production
-const logoPath = computed(() => '/logo/HakBorrel-LOGOS_white 1.png')
+const logoPath = computed(() => '/logo/hakborrel.png')
 
 // Computed styles to ensure consistent formatting between server and client
 // This prevents hydration mismatches

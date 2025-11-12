@@ -9,7 +9,7 @@
             alt="HakBorrel Logo"
             loading="eager"
             format="webp"
-            quality="100"
+            fetchpriority="high"
             sizes="40px"
           />
           
@@ -140,7 +140,7 @@
 import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 
 // Use computed to ensure proper path handling in production
-const logoPath = computed(() => '/logo/HakBorrel-LOGOS_white 1.png')
+const logoPath = computed(() => '/logo/hakborrel.png')
 
 const isMobileMenuOpen = ref(false)
 const activeSection = ref('home')

@@ -133,7 +133,7 @@
               class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
               loading="lazy"
               format="webp"
-              quality="95"
+              preset="thumbnail"
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
@@ -184,7 +184,6 @@
                   style="width: 100%; height: 100%;"
                   loading="lazy"
                   format="webp"
-                  quality="95"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 />
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -236,9 +235,9 @@
                   :src="photo.src"
                   :alt="photo.title || `${selectedCollection.title} - Foto ${index + 1}`"
                   class="object-contain w-full h-full"
-                  loading="eager"
+                  loading="lazy"
                   format="webp"
-                  quality="100"
+                  preset="hero"
                 />
               </div>
             </SwiperSlide>

@@ -23,7 +23,7 @@
           class="object-contain flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32"
           loading="eager"
           format="webp"
-          quality="100"
+          fetchpriority="high"
           sizes="(max-width: 640px) 64px, (max-width: 768px) 80px, (max-width: 1024px) 96px, 112px, 128px"
         />
         <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl 2xl:text-8xl font-display leading-tight flex-shrink-0">
@@ -137,7 +137,7 @@
 import { computed } from 'vue'
 
 // Use computed to ensure proper path handling in production
-const logoPath = computed(() => '/logo/HakBorrel-LOGOS_white 1.png')
+const logoPath = computed(() => '/logo/hakborrel.png')
 const { scrollToNext } = useScrollSnap()
 
 // Computed style to ensure consistent formatting between server and client

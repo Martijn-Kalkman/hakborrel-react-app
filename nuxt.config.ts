@@ -19,7 +19,16 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
     build: {
-      sourcemap: true,
+      sourcemap: process.dev, // Only enable sourcemaps in development
+      cssCodeSplit: true, // Split CSS for better caching
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'vendor': ['vue', 'vue-router'],
+            'swiper': ['swiper']
+          }
+        }
+      }
     },
   },
   
@@ -39,8 +48,24 @@ export default defineNuxtConfig({
     },
     densities: [1, 2],
     format: ['webp'],
-    quality: 95,
+    quality: 80, // Reduced from 95 for better performance (80 is still high quality)
     provider: 'ipx',
+    presets: {
+      thumbnail: {
+        modifiers: {
+          format: 'webp',
+          quality: 75,
+          width: 400
+        }
+      },
+      hero: {
+        modifiers: {
+          format: 'webp',
+          quality: 85,
+          width: 1200
+        }
+      }
+    }
   },
   
   // Nitro server configuration
@@ -48,6 +73,7 @@ export default defineNuxtConfig({
     experimental: {
       wasm: true
     },
+    compressPublicAssets: true, // Compress static assets
     routeRules: {
       '/**': {
         headers: {
@@ -123,7 +149,7 @@ export default defineNuxtConfig({
         },
         {
           rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap'
+          href: 'https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap'
         }
       ],
       meta: [

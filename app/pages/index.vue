@@ -52,15 +52,18 @@
 </template>
 
 <script setup>
-// This page now uses components for all sections
-// Navigation, HeroSection, and EventsSection are auto-imported by Nuxt 4
+import { defineAsyncComponent } from 'vue'
 
-// Explicit import to ensure components are available
-import EventsSection from '~/components/EventsSection.vue'
-import CommunitySection from '~/components/CommunitySection.vue'
-import StorySection from '~/components/StorySection.vue'
-import MediaSection from '~/components/MediaSection.vue'
-import Footer from '~/components/Footer.vue'
+// This page now uses components for all sections
+// Navigation, HeroSection are loaded immediately (above the fold)
+// Other components are lazy loaded for better initial page load performance
+
+// Lazy load components below the fold for better initial page load
+const EventsSection = defineAsyncComponent(() => import('~/components/EventsSection.vue'))
+const CommunitySection = defineAsyncComponent(() => import('~/components/CommunitySection.vue'))
+const StorySection = defineAsyncComponent(() => import('~/components/StorySection.vue'))
+const MediaSection = defineAsyncComponent(() => import('~/components/MediaSection.vue'))
+const Footer = defineAsyncComponent(() => import('~/components/Footer.vue'))
 
 const { handleWheel, handleTouchStart, handleTouchMove, handleTouchEnd, handleScrollSnap } = useScrollSnap()
 
@@ -81,31 +84,32 @@ onMounted(() => {
              (window.innerWidth <= 768)
     }
     
-    // On mobile, completely disable all scroll-snap interference
-    // Let native scrolling work naturally
-    if (!isMobile()) {
-      // Desktop only - use touch handlers and scroll snap
-      window.addEventListener('touchstart', handleTouchStart, { passive: true })
-      window.addEventListener('touchmove', handleTouchMove, { passive: true })
-      window.addEventListener('touchend', handleTouchEnd, { passive: true })
-      
-      // Only add scroll snap handler on desktop
-      let scrollTimeout = null
-      const handleWindowScroll = () => {
-        if (scrollTimeout) clearTimeout(scrollTimeout)
-        scrollTimeout = setTimeout(() => {
+    // Enable touch handlers for both mobile and desktop
+    // Mobile will use CSS scroll-snap, desktop uses JS handlers
+    window.addEventListener('touchstart', handleTouchStart, { passive: true })
+    window.addEventListener('touchmove', handleTouchMove, { passive: true })
+    window.addEventListener('touchend', handleTouchEnd, { passive: true })
+    
+    // Add scroll snap handler for both mobile and desktop
+    // On mobile, this helps with fine-tuning after CSS scroll-snap
+    let scrollTimeout = null
+    const handleWindowScroll = () => {
+      if (scrollTimeout) clearTimeout(scrollTimeout)
+      scrollTimeout = setTimeout(() => {
+        // Only use JS snap on desktop, mobile uses CSS scroll-snap
+        if (!isMobile()) {
           handleScrollSnap()
-        }, 400)
-      }
-      window.addEventListener('scroll', handleWindowScroll, { passive: true })
-      
-      onUnmounted(() => {
-        if (process.client) {
-          window.removeEventListener('scroll', handleWindowScroll)
-          if (scrollTimeout) clearTimeout(scrollTimeout)
         }
-      })
+      }, 400)
     }
+    window.addEventListener('scroll', handleWindowScroll, { passive: true })
+    
+    onUnmounted(() => {
+      if (process.client) {
+        window.removeEventListener('scroll', handleWindowScroll)
+        if (scrollTimeout) clearTimeout(scrollTimeout)
+      }
+    })
   }
   
   // Cleanup on unmount
@@ -178,42 +182,43 @@ onMounted(() => {
   }
 }
 
-/* Touch-friendly scroll snapping on mobile - scrollable containers like hero */
+/* Mobile scroll snapping - enable smooth section-by-section scrolling */
 @media (pointer: coarse), (max-width: 768px) {
   :global(html) {
-    scroll-snap-type: none !important; /* Completely disable scroll snap on mobile */
+    scroll-snap-type: y mandatory !important; /* Enable scroll snap on mobile */
+    scroll-behavior: smooth;
     overflow-y: auto !important;
-    height: auto !important; /* Allow page to scroll */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    height: auto !important;
   }
   :global(body) {
-    scroll-snap-type: none !important;
+    scroll-snap-type: y mandatory !important;
+    scroll-behavior: smooth;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch;
     touch-action: pan-y;
-    height: auto !important; /* Allow page to scroll */
+    height: auto !important;
   }
   .scroll-snap-section {
-    scroll-snap-align: none !important; /* Disable snap alignment */
-    scroll-snap-stop: normal !important; /* Don't force stop */
-    scroll-margin-top: 0; /* Remove snap margin */
-    /* Make sections exactly 100vh scrollable containers */
-    height: 100vh;
-    height: 100dvh;
+    scroll-snap-align: start !important; /* Enable snap alignment */
+    scroll-snap-stop: always !important; /* Always stop at each section */
+    scroll-margin-top: 72px; /* Account for fixed navbar */
+    /* Make sections full viewport height */
     min-height: 100vh;
     min-height: 100dvh;
-    max-height: 100vh;
-    max-height: 100dvh;
-    /* Create scrollable container for internal content */
-    overflow-y: auto !important;
+    height: auto; /* Allow content to grow if needed */
+    max-height: none; /* Remove max-height restriction */
+    /* Remove internal scrolling - let page scroll naturally */
+    overflow-y: visible !important;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
-    touch-action: pan-y; /* Allow vertical panning */
+    touch-action: pan-y;
     position: relative;
-    display: flex !important; /* Use flex for internal layout */
+    display: block !important; /* Use block layout for natural flow */
     flex-direction: column;
     width: 100%;
-    /* Allow scroll to chain to next section when at bottom */
-    overscroll-behavior-y: contain; /* Prevent scroll chaining on scroll up */
+    /* Allow natural scroll chaining between sections */
+    overscroll-behavior-y: auto;
     overscroll-behavior-x: auto;
     /* Ensure sections are in page flow and visible */
     margin: 0;
@@ -223,18 +228,16 @@ onMounted(() => {
     clear: both;
     float: none;
   }
-  /* Make inner content fill and scrollable */
+  /* Make inner content fill naturally */
   .scroll-snap-section > section,
   .scroll-snap-section > div {
-    min-height: 100%;
+    min-height: auto;
     height: auto;
     width: 100%;
     position: relative;
     /* Let components use their own display */
     overflow: visible;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+    display: block;
   }
   
   /* Ensure all section content classes work properly */
@@ -244,41 +247,14 @@ onMounted(() => {
   .story-section-content,
   .media-section-content,
   .footer-section-content {
-    /* Allow content to flow and fill container */
-    min-height: 100%;
+    /* Allow content to flow naturally */
+    min-height: auto;
     height: auto;
     width: 100%;
     position: relative;
     /* Prevent horizontal scroll */
     overflow-x: hidden;
-    /* Let components use their own display (flex, block, etc.) */
-    /* Components can scroll within the parent scroll-snap-section container */
-  }
-  
-  /* Special handling for hero section on mobile */
-  .mobile-hero-section {
-    /* On mobile, allow content to grow and scroll */
-    align-items: flex-start !important; /* Start from top instead of center */
-    justify-content: flex-start !important; /* Start from top */
-    padding-top: 20px; /* Add top padding for spacing */
-    padding-bottom: 80px; /* Add bottom padding so scroll arrow and all content visible */
-    min-height: 100%;
-    height: auto;
-    /* Allow content to scroll naturally */
-    overflow: visible;
-  }
-  
-  /* Ensure hero section inner content flows properly */
-  .mobile-hero-section > div {
-    width: 100%;
-    height: auto;
-    min-height: auto;
-    padding-bottom: 20px; /* Extra space at bottom */
-  }
-  
-  /* Ensure page can scroll to show all sections */
-  .scroll-snap-section:last-child {
-    margin-bottom: 0;
+    /* Let components use their own display */
   }
   
   /* Ensure the content wrapper allows all sections to be visible */
@@ -289,8 +265,6 @@ onMounted(() => {
     min-height: auto;
     position: relative;
     overflow: visible !important;
-    /* Allow page to scroll normally */
-    overflow-y: visible !important;
   }
 }
 

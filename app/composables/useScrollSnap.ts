@@ -199,7 +199,7 @@ export const useScrollSnap = () => {
     }
   }
 
-  // Mobile touch handlers - detect scroll within sections vs between sections
+  // Mobile touch handlers - work with CSS scroll-snap on mobile
   const handleTouchStart = (e: TouchEvent) => {
     if (isScrolling) return
     touchStartY = e.touches[0].clientY
@@ -208,11 +208,25 @@ export const useScrollSnap = () => {
   }
 
   const handleTouchMove = (e: TouchEvent) => {
-    // Don't interfere - let native scrolling work
+    // Don't interfere - let native CSS scroll-snap work on mobile
     touchEndY = e.touches[0].clientY
   }
 
   const handleTouchEnd = (e: TouchEvent) => {
+    // On mobile, let CSS scroll-snap handle the snapping
+    // Only use JS handlers for desktop or special cases
+    const isMobile = () => {
+      if (typeof window === 'undefined') return false
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+             (window.innerWidth <= 768)
+    }
+    
+    // On mobile, CSS scroll-snap handles everything - don't interfere
+    if (isMobile()) {
+      return
+    }
+    
+    // Desktop touch handling (for touch-enabled laptops/tablets)
     if (isScrolling || isTouchScrolling) return
     
     touchEndY = e.changedTouches[0].clientY
@@ -226,7 +240,6 @@ export const useScrollSnap = () => {
     const speed = absDiff / Math.max(timeDiff, 1)
     
     if (absDiff < distanceThreshold && speed < speedThreshold) {
-      // Small movement, don't do anything
       return
     }
     
@@ -266,8 +279,6 @@ export const useScrollSnap = () => {
         return
       }
       
-      // Otherwise, allow natural scrolling within section
-      // Don't do anything - let the section scroll naturally
       return
     }
     
